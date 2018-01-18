@@ -1,0 +1,22 @@
+//left fixed sider bar
+.left-side-fixed{
+	min-height: 400px;
+	.table-of-contents{
+		position: fixed;
+		overflow: auto;
+	}
+	.table-of-contents li{
+		padding: 6px 0;
+	}
+	.table-of-contents a{
+		padding-left: 16px;
+	}
+	.table-of-contents a:hover{
+		color: $color-primary;
+		border: none;
+	}
+	.table-of-contents a.active{
+		border-left:2px solid $color-primary;
+	}
+
+}

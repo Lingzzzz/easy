@@ -1,0 +1,21 @@
+.g-wrap{
+  width: 1200px;
+  margin: 0 auto;
+}
+.g-wrap-960{
+  width: 962px;
+  margin: 0 auto;
+}
+.main-wrap{
+    flex: 1 0 auto;
+  }
+.left-side{
+    float: left;
+    width: 200px;
+    height: 100%;
+  }
+.right-side{
+  float: left;
+  width: calc(100% - 240px);
+}
+

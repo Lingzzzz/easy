@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>EASY</title>
+  <link href="css/fontawesome-all.css" type="text/css" rel="stylesheet" />
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" />
+  <link href="css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<!-- top nav -->
+<header>
+  <div class="top-nav">
+      <div class="nav-left"><a href="index.html"><i class="fab fa-pushed" style="font-size: 24px"></i>EASY</a></div>
+      <div class="nav-center">
+        <div class="menu-list">
+          <ul>
+            <li><a href="motion.html">动效库</a></li>
+            <li><a href="iconfont.html">iconfont</a></li>
+            <li><a class="active" href="standard.html">设计规范</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="user">
+          <div class="user-avatar">
+            <img src="img/avatar.jpg" class="circle">
+          </div>
+          <div class="user-name">Luna Zhong
+            <div class="user-icon"> <i class="fas fa-caret-down"></i></div>
+          </div>
+         
+        </div>
+      </div>
+  </div>
+</header>
+
+<!-- top nav end-->
+
+<!-- main -->
+<div class="main-wrap f-bg">
+  <div class="g-wrap">
+    <div class="standard-list">
+      <ul class="collapsible" data-collapsible="expandable">
+        <li>
+          <div class="collapsible-header active">
+            <div class="collapsible-line"></div>
+            <div class="collapsible-title"><i class="fas fa-caret-down"></i>UI类</div>
+          </div>
+          <div class="collapsible-body">
+            <ul class="list-row">
+              
+              <li class="card-four">
+                <a href="demo1-preview.html">
+                <div class="card-img">
+                  <img src="img/standard-ui-cover01.jpg">
+                </div>
+                <div class="card-info">
+                  基础视觉标准模版
+                </div>
+                <div class="card-item">
+                  <span>Design by:</span>作者名
+                </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <div class="collapsible-line"></div>
+            <div class="collapsible-title"><i class="fas fa-caret-down fa-caret-right"></i>平面类</div>
+          </div>
+          <div class="collapsible-body"></div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <div class="collapsible-line"></div>
+            <div class="collapsible-title"><i class="fas fa-caret-down fa-caret-right"></i>VI类</div>
+          </div>
+          <div class="collapsible-body"></div>
+        </li>
+      </ul>
+  </div>
+  </div>
+</div>
+<!-- main end -->
+
+<!-- footer -->
+<footer class="page-footer">
+  <div class="container">
+      <div class="center-align">2018 © iFlyTek UED Team</div>
+  </div>
+</footer>
+<!-- footer end -->
+
+<!--  Scripts-->
+<script src="js/jquery.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script type="text/javascript">
+  $('.collapsible-header').on("click",function(){
+    $(this).find('i').toggleClass('fa-caret-right');
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+@mixin noBorder{
+    border:none;
+  }
+
+@mixin noShadow{
+	-webkit-box-shadow:none;
+	box-shadow: none;
+}
+
+.cleanfix{
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.f-pr{
+  position: relative;
+}
+.f-pa{
+  position: absolute;
+}
+.f-noBorder{
+  border:none !important;
+}
+.f-bg{
+  background-color: #fafafa;
+}

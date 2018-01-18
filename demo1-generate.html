@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>EASY</title>
+    <link href="css/fontawesome-all.css" type="text/css" rel="stylesheet" />
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<header class="header-white">
+  <div class="top-nav">
+      <div class="nav-left">
+          <div class="nav-left"><a href="demo1-fillin.html"><span class="fas fa-angle-left"></span>返回</a></div>
+      </div>
+      <div class="nav-right">
+<!--         <button class="waves-effect waves-light btn yellow darken-2 j-test">
+          <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-yellow-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </button> -->
+        <button class="waves-effect waves-light btn yellow darken-2 j-renderPng">保存为PNG</button>
+        <button class="waves-effect waves-light btn yellow darken-2 j-renderPdf">保存为PDF</button>
+      </div>
+  </div>
+</header>
+    <!-- main start -->
+    <div class="main-wrap">
+        <div class="g-wrap-960">
+            <div class="standard-container" id="renderPages">
+
+            </div>
+            <script type="text/html" id="leftMenu-tpl">
+            </script>
+            <script type="text/html" id="standardPages-tpl">
+                <!-- a page start -->
+                {{if cover.key}}
+                <div class="pages ui-demo01-cover" style="background-color:#{{cover.background_color}}">
+                    <div class="headline">{{cover.headline}}</div>
+                    <div class="subhead">{{cover.subhead}}</div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+                <!-- a page start -->
+                {{if intro.key}}
+                <div class="pages ui-demo01-intro">
+                    <div class="intro valign-wrapper">前言</div>
+                    <div class="info">{{@intro.info}}</div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+                <!-- a page start -->
+                {{if color.key}}
+                <div class="pages page-twoPart ui-demo01-color">
+                    <div class="title">
+                        <div class="num"></div>
+                        <div class="name">标准色
+                            <br>color</div>
+                    </div>
+                    <div class="content">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px"></th>
+                                    <th style="width: 160px"></th>
+                                    <th style="width: 100px">色值</th>
+                                    <th>使用场景</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3">重要</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="color-block" style="background-color: #{{color.color.primary1}}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="color-value">#{{color.color.primary1}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="color-info">{{color.info.primary1}}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="color-block" style="background-color: #{{color.color.primary2}}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="color-value">#{{color.color.primary2}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="color-info">{{color.info.primary2}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px"></th>
+                                    <th style="width: 160px"></th>
+                                    <th style="width: 100px"> </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3">辅色</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="color-block" style="background-color: #{{color.color.minor1}}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="color-value">#{{color.color.minor1}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="color-info">{{color.info.minor1}}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="color-block" style="background-color: #{{color.color.minor2}}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="color-value">#{{color.color.minor2}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="color-info">{{color.info.minor2}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px"></th>
+                                    <th style="width: 160px"></th>
+                                    <th style="width: 100px"> </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3">文字</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="color-block" style="background-color: #{{color.color.font1}}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="color-value">#{{color.color.font1}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="color-info">{{color.info.font1}}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="color-block" style="background-color: #{{color.color.font2}}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="color-value">#{{color.color.font2}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="color-info">{{color.info.font2}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+                <!-- a page start -->
+                {{if font.key}}
+                <div class="pages page-twoPart ui-demo01-font">
+                    <div class="title">
+                        <div class="num"></div>
+                        <div class="name">标准字
+                            <br>font</div>
+                    </div>
+                    <div class="content">
+                        <!-- <div class="font-explan">{{font.explan}}</div> -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 160px">样式</th>
+                                    <th style="width: 60px">字号</th>
+                                    <th>使用场景</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="font-size" style="font-size: {{font.size1}}px">标准字</div>
+                                    </td>
+                                    <td>{{font.size1}}</td>
+                                    <td>{{font.info1}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-size" style="font-size: {{font.size2}}px">标准字</div>
+                                    </td>
+                                    <td>{{font.size2}}</td>
+                                    <td>{{font.info2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-size" style="font-size: {{font.size3}}px">标准字</div>
+                                    </td>
+                                    <td>{{font.size3}}</td>
+                                    <td>{{font.info3}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="font-size" style="font-size: {{font.size4}}px">标准字</div>
+                                    </td>
+                                    <td>{{font.size4}}</td>
+                                    <td>{{font.info4}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+                <!-- a page start -->
+                {{if button.key}}
+                <div class="pages page-twoPart ui-demo01-button">
+                    <div class="title">
+                        <div class="num"></div>
+                        <div class="name">按钮
+                            <br>button</div>
+                    </div>
+                    <div class="content" style="margin-top: 24px;">
+                        <div class="ct-left">
+                            <div class="side-structure">
+                                <div class="name">默认状态</div>
+                                <div class="detail">
+                                    <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="side-structure">
+                                <div class="name">按下效果</div>
+                                <div class="detail f-pr">
+                                    <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                    <div class="button-cover-darken" style="border-radius: {{button.radius}}px;"></div>
+                                </div>
+                            </div>
+                            <div class="side-structure">
+                                <div class="name">禁用效果</div>
+                                <div class="detail f-pr">
+                                    <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                    <div class="button-cover-light" style="border-radius: {{button.radius}}px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ct-right">
+                            <div class="side-structure">
+                                <div class="name">超大尺寸</div>
+                                <div class="detail">
+                                    <div class="button-style button-lg" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="side-structure">
+                                <div class="name">正常尺寸</div>
+                                <div class="detail">
+                                    <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="side-structure">
+                                <div class="name">较小尺寸</div>
+                                <div class="detail">
+                                    <div class="button-style button-sm" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="side-structure">
+                                <div class="name">超小尺寸</div>
+                                <div class="detail">
+                                    <div class="button-style button-xs" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ct-bottom">
+                            <div class="button-list">
+                                <div class="name" style="color: #263238">默认</div>
+                                <div class="detail">
+                                    <div class="button-style" style="background-color: #fff;border-radius: {{button.radius}}px;color: #{{button.default}};border:1px solid #{{button.default}};">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="button-list">
+                                <div class="name" style="color: #263238">主要</div>
+                                <div class="detail">
+                                    <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="button-list">
+                                <div class="name" style="color: #263238">成功</div>
+                                <div class="detail">
+                                    <div class="button-style" style="background-color: #{{button.success}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                            <div class="button-list">
+                                <div class="name" style="color: #263238">危险</div>
+                                <div class="detail">
+                                    <div class="button-style" style="background-color: #{{button.danger}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+                <!-- a page start -->
+                {{if input.key}}
+                <div class="pages page-twoPart ui-demo01-input">
+                    <div class="title">
+                        <div class="num"></div>
+                        <div class="name">输入框
+                            <br>input</div>
+                    </div>
+                    <div class="content" style="margin-top: 48px;">
+                        <div class="ct-left">
+                            <div class="updown-structure" style="margin-bottom:45px;">
+                                <div class="name">未输入状态</div>
+                                <div class="detail">
+                                    <div class="input-status" style="border-radius: {{input.radius}}px;">
+                                        <span class="font-grey">请输入用户名</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="updown-structure">
+                                <div class="name">输入后状态</div>
+                                <div class="detail">
+                                    <div class="input-status" style="border-radius: {{input.radius}}px;">
+                                        讯飞UED
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ct-right">
+                            <div class="updown-structure">
+                                <div class="name">激活状态</div>
+                                <div class="detail">
+                                    <div class="input-status" style="border-radius: {{input.radius}}px;border:1px solid #{{input.success}}"></div>
+                                    <div class="verify-status" style="color: #{{input.success}};">最多可以填写12个字符。</div>
+                                </div>
+                            </div>
+                            <div class="updown-structure">
+                                <div class="name">错误状态</div>
+                                <div class="detail">
+                                    <div class="input-status" style="border-radius: {{input.radius}}px;border:1px solid #{{input.danger}}"></div>
+                                    <div class="verify-status" style="color: #{{input.danger}};">请输入正确的格式！</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ct-bottom">
+                            <div class="updown-structure">
+                                <div class="name">多行输入框</div>
+                                <div class="detail">
+                                    <div class="textarea-status" style="border-radius: {{input.radius}}px;">
+                                        <div class="counter">0/50</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+                <!-- a page start -->
+                {{if select.key}}
+                <div class="pages page-twoPart ui-demo01-select">
+                    <div class="title">
+                        <div class="num"></div>
+                        <div class="name">下拉选择
+                            <br>select</div>
+                    </div>
+                    <div class="content">
+                        <div class="ct-center" style="margin: 40px 0 0 160px">
+                            <div class="updown-structure">
+                                <div class="name">普通状态</div>
+                                <div class="detail">
+                                    <div class="select-box" style="border-radius: {{select.radius}}px;">请选择省份
+                                        <i class="right fas fa-angle-down" style="margin-top: 8px;color: #78909c"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="updown-structure">
+                                <div class="name">展开状态</div>
+                                <div class="detail">
+                                    <div class="select-box" style="border-radius: {{select.radius}}px">请选择省份
+                                        <i class="right fas fa-angle-up" style="margin-top: 8px;color: #78909c"></i>
+                                    </div>
+                                    <div class="select-fold" style="border-radius: {{select.radius}}px">
+                                        <p style="background-color:#{{select.active}};color:#fff">北京</p>
+                                        <p>上海</p>
+                                        <p>广东</p>
+                                        <p>安徽</p>
+                                        <p>黑龙江</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                <!-- a page end -->
+            </script>
+        </div>
+    </div>
+    <!-- main end -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="center-align">2018 © iFlyTek UED Team</div>
+        </div>
+    </footer>
+    <!--  Scripts-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/template-web.js"></script>
+    <script src="js/loadbutton.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/jspdf.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/standard.js"></script>
+    <script type="text/javascript">
+
+
+  $(document).ready(function(){
+    page.init();
+    initPageIndex();
+    renderStandard();
+  });
+        $('.j-test').on('click',function(){
+            $(this).loadbutton('loading');
+
+            setTimeout(function(){
+                $(this).loadbutton('success');
+                setTimeout(function(){
+                    $(this).loadbutton('reset');
+                }.bind(this),1000);
+            }.bind(this),1000);
+        })
+
+        $('.j-test').on('loading.bs.loadbtn',function(){
+            console.log('loading.bs.loadbtn 加载中')
+        })
+
+        $('.j-test').on('success.bs.loadbtn',function(){
+            console.log('success.bs.loadbtn 成功')
+        })
+
+        $('.j-test').on('reset.bs.loadbtn',function(){
+            console.log('reset.bs.loadbtn 重置')
+        })
+    </script>
+</body>
+
+</html>

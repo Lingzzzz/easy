@@ -1,0 +1,35 @@
+.motin-list{
+  margin: 60px auto 0;
+  .list-row{
+    margin-bottom: 60px;
+  }
+  li{
+    display: inline-block;
+    width: 45%;
+    text-align: center;
+    margin-right: 9%;
+    transition:transform .3s,box-shadow .3s cubic-bezier(.215,.61,.355,1),
+               -webkit-transform .3s,-webkit-box-shadow .3s cubic-bezier(.215,.61,.355,1);
+
+    &:last-child{
+      margin-right: 0;
+    }
+    &:hover{
+      box-shadow:0 5px 10px rgba(0,0,0,.15);
+      -webkit-box-shadow:0 5px 10px rgba(0,0,0,.15);
+      transform:translateY(-6px);
+      -webkit-transform:translateY(-6px);
+    }
+    img{
+      width: 540px;
+      height: 360px;
+    }
+    p{
+      color: $font-grey;
+      font-size: 16px;
+      padding: 12px 0;
+
+    }
+  }
+}
+

@@ -1,0 +1,82 @@
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,address,figure,figcaption,menu,details{display:block;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+li{list-style:none;}
+a,button{cursor:pointer;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body{font-family:"PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial,sans-serif;
+     font-size:14px;background:#fff;min-width: 1200px;}
+a,a:hover{color:;}
+
+/* reset scroll bar style */
+::scrollbar {
+  height: 6px;
+  width: 6px; }
+
+::scrollbar:hover {
+  background-color: #ddd;
+  border: none; }
+
+::scrollbar-thumb {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }
+
+::scrollbar-thumb:hover {
+  background-color: #999; }
+
+::scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); }
+/* reset default style */
+nav {
+  color: #263238;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 8px #f0f1f2;
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+nav .brand-logo{
+  color: #263238;
+}
+.page-footer{
+  padding: 40px 0 32px 0;
+  background-color: #1e1400;
+
+}
+
+/* private style */
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+  }
+.main-wrap{
+    flex: 1 0 auto;
+    padding: 40px 0 0;
+  }
+.main-menu{
+    float: left;
+    width: 240px;
+    height: 200px;
+  }
+.main-container{
+  float: left;
+  height: 800px;
+  width: calc(100% - 240px);
+}
+.menu-container
+/* .banner{
+  background: #ffdc7c;
+}
+
+.curve::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 120px;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg version=%221.1%22 xmlns=%22http://www.w3.org/2000/svg%22 x=%220%22 y=%220%22 viewBox=%220 0 1920 120%22 preserveAspectRatio=%22none%22%3E%3Cpath fill=%22%23fff%22 d=%22M1920,0v120H0c0,0,98-78.1,209-78.6c140.3-0.7,453.8,65.9,787.1,65C1680.3,104.4,1920,0,1920,0z%22/%3E%3C/svg%3E");
+}
+ */

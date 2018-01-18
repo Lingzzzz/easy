@@ -1,0 +1,79 @@
+{
+    "cover":
+    {
+        "key": true,
+        "title":"封面",
+        "background_color": "FBC02D",
+        "headline": "易用系统视觉规范",
+        "subhead": "讯飞UED"
+    },
+    "intro":
+    {
+        "key": true,
+        "title":"前言",
+        "info": "本视觉规范标注的字体是基于电脑系统下使用的字体，开发时应当替换成对应的默认字体。"
+    },
+    "color":
+    {
+        "key": true,
+        "title":"标准色",
+        "color":
+        {
+            "primary1":"FBC02D",
+            "primary2":"42A5F5",
+            "minor1":"4CAF50",
+            "minor2":"B0BEC5",
+            "font1":"263238",
+            "font2":"B1BEC4"
+
+        },
+        "info":
+        {
+            "primary1":"主色调，小面积使用。用于强调突出的文字、按钮和ICON。",
+            "primary2":"辅助色，用于链接，状态提示。",
+            "minor1":"用于成功、正常状态提示。",
+            "minor2":"用于边框颜色。",
+            "font1":"主要文字色调。用于标题和一般正文。",
+            "font2":"用于次要和提示性文字。"
+        }
+    },
+    "font":
+    {
+        "key": true,
+        "title":"标准字",
+        "explan": "中文字体：微软雅黑。数字与英文字体：Helvetica",
+        "size1": "36",
+        "info1": "用于少数重要标题。",
+        "size2": "24",
+        "info2": "用于一些较为重要的文字。",
+        "size3": "14",
+        "info3": "用于大多数正文文字。",
+        "size4": "12",
+        "info4": "用于提示以及辅助性文字。"
+    },
+    "button":
+    {
+        "key": true,
+        "title":"按钮",
+        "default": "263238",
+        "primary": "FBC02D",
+        "success": "4CAF50",
+        "danger": "EF5350",
+        "radius":"4"
+    },
+    "input":
+    {
+        "key": true,
+        "title":"输入框",
+        "radius":"4",
+        "success": "4CAF50",
+        "danger": "EF5350"
+    },
+    "select":
+    {
+        "key": true,
+        "title":"下拉选择",
+        "radius":"4",
+        "active":"fbc02d"
+    }
+}
