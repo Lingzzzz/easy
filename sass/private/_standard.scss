@@ -190,6 +190,7 @@
       left: 0;
     }
     input[type=text]:not(.browser-default){
+      text-transform:uppercase;
       padding-left: 12px;
     }
   }
@@ -368,4 +369,18 @@
     }
   }
 }
-
+.ui-demo01-exception{
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+          align-items: center;
+  color: $font-basic;
+  text-align: center;
+  padding-top: 60px;
+  h5{
+    font-size: 18px;
+    line-height: 32px;
+  }
+}

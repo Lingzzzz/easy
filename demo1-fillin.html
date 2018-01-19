@@ -28,7 +28,7 @@
           <div class="nav-left"><a href="demo1-preview.html"><span class="fas fa-angle-left"></span>返回</a></div>
       </div>
       <div class="nav-right">
-        <a href="demo1-generate.html" onclick='page.savePageData()'><button class="waves-effect waves-light btn yellow darken-2">预览页面</button></a>
+        <button class="waves-effect waves-light btn yellow darken-2 j-goGeneratePage" onclick='page.savePageData()'>预览页面</button>
       </div>
   </div>
 </header>
@@ -39,15 +39,15 @@
 
                 </ul>
                 <script type="text/html" id="leftMenu-tpl">
-                    {{each $data val}}
+                    {{each $data.modules val}}
                         {{if val.key}}
                         <li><a href="#{{$index}}" class="{{if $index == 'cover'}}active{{/if}}">{{val.title}}</a></li>
                         {{/if}}
                     {{/each}}
                       <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                          <div class="collapsible-header">回收站(<span id="recycle-box">0</span>)</div>
-                        {{each $data val}}
+                          <div class="collapsible-header active">回收站(<span id="recycle-box">{{$data.recyleCount}}</span>)</div>
+                        {{each $data.modules val}}
                             {{if !val.key}}
                           <div class="collapsible-body">
                               <span class="restore-tit">{{val.title}}</span>
@@ -65,32 +65,32 @@
                 </div>
                 <script type="text/html" id="standardPages-tpl">
                     <!-- a page start -->
-                    <div id="cover" class="section scrollspy {{if !cover.key}}hide{{/if}}">
+                    <div id="cover" class="section scrollspy {{if !modules.cover.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">封面</div>
                             <div class="button">
                                 <button class="btn btn-white-border j-rmpage">移去此页</button>
                             </div>
                         </div>
-                        <div class="pages pages-border ui-demo01-cover" style="background-color:#{{cover.background_color}}">
+                        <div class="pages pages-border ui-demo01-cover" style="background-color:#{{modules.cover.background}}">
                             <div class="input-field input-color" style="width: 624px">
                                 <span>输入色值：</span>
                                 <span class="color-prefix">#</span>
-                                <input class="validate" type="text" placeholder="推荐输入主色调" name="background_color" maxlength="6" value="{{cover.background_color}}" data-modal="cover.background_color">
+                                <input class="validate" type="text" placeholder="推荐输入主色调" name="background" maxlength="6" value="{{modules.cover.background}}" data-modal="modules.cover.background">
                             </div>
                             <div class="input-field" style="width: 624px">
                                 <span>输入标题：</span>
-                                <input class="validate" type="text" placeholder="请输入标题" name="headline" maxlength="20" value="{{cover.headline}}" data-modal="cover.headline">
+                                <input class="validate" type="text" placeholder="请输入标题" name="headline" maxlength="20" value="{{modules.cover.headline}}" data-modal="modules.cover.headline">
                             </div>
                             <div class="input-field" style="width: 624px">
                                 <span>输入副标题：</span>
-                                <input class="validate" type="text" placeholder="请输入副标题" name="subhead" maxlength="24" value="{{cover.subhead}}" data-modal="cover.subhead">
+                                <input class="validate" type="text" placeholder="请输入副标题" name="subhead" maxlength="24" value="{{modules.cover.subhead}}" data-modal="modules.cover.subhead">
                             </div>
                         </div>
                     </div>
                     <!-- a page end -->
                     <!-- a page start -->
-                    <div id="intro" class="section scrollspy {{if !intro.key}}hide{{/if}}">
+                    <div id="intro" class="section scrollspy {{if !modules.intro.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">前言</div>
                             <div class="button">
@@ -101,7 +101,7 @@
                             <div class="intro valign-wrapper">前言</div>
                             <div class="info">
                                 <div class="input-field" style="width: 480px;">
-                                    <textarea class="materialize-textarea" data-modal="intro.info">{{intro.info | textareaFormat}}</textarea>
+                                    <textarea class="materialize-textarea" data-modal="modules.intro.info">{{modules.intro.info | textareaFormat}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                     <!-- a page end -->
 
                     <!-- a page start -->
-                    <div id="color" class="section scrollspy {{if !color.key}}hide{{/if}}">
+                    <div id="color" class="section scrollspy {{if !modules.color.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">标准色</div>
                             <div class="button">
@@ -138,40 +138,40 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="color-block" style="background-color: #{{color.color.primary1}}"></div>
+                                                <div class="color-block" style="background-color: #{{modules.color.color.primary1}}"></div>
                                             </td>
                                             <td>
                                                 <div class="color-value">
                                                     <div class="input-field input-color" style="width: 64px;">
                                                         <span class="color-prefix">#</span>
-                                                        <input class="validate" type="text" name="color.color.primary1" maxlength="6" value="{{color.color.primary1}}" data-modal="color.color.primary1">
+                                                        <input class="validate" type="text" name="modules.color.color.primary1" maxlength="6" value="{{modules.color.color.primary1}}" data-modal="modules.color.color.primary1">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="color-info">
                                                     <div class="input-field">
-                                                        <input class="validate" type="text" name="color.info.primary1" maxlength="24" value="{{color.info.primary1}}" data-modal="color.info.primary1">
+                                                        <input class="validate" type="text" name="modules.color.info.primary1" maxlength="24" value="{{modules.color.info.primary1}}" data-modal="modules.color.info.primary1">
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="color-block" style="background-color: #{{color.color.primary2}}"></div>
+                                                <div class="color-block" style="background-color: #{{modules.color.color.primary2}}"></div>
                                             </td>
                                             <td>
                                                 <div class="color-value">
                                                     <div class="input-field input-color" style="width: 64px;">
                                                         <span class="color-prefix">#</span>
-                                                        <input class="validate" type="text" name="color.color.primary2" maxlength="6" value="{{color.color.primary2}}" data-modal="color.color.primary2">
+                                                        <input class="validate" type="text" name="modules.color.color.primary2" maxlength="6" value="{{modules.color.color.primary2}}" data-modal="modules.color.color.primary2">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="color-info">
                                                     <div class="input-field">
-                                                        <input class="validate" type="text" name="color.info.primary2" maxlength="24" value="{{color.info.primary2}}" data-modal="color.info.primary2">
+                                                        <input class="validate" type="text" name="modules.color.info.primary2" maxlength="24" value="{{modules.color.info.primary2}}" data-modal="modules.color.info.primary2">
                                                     </div>
                                                 </div>
                                             </td>
@@ -193,40 +193,40 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="color-block" style="background-color: #{{color.color.minor1}}"></div>
+                                                <div class="color-block" style="background-color: #{{modules.color.color.minor1}}"></div>
                                             </td>
                                             <td>
                                                 <div class="color-value">
                                                     <div class="input-field input-color" style="width: 64px;">
                                                         <span class="color-prefix">#</span>
-                                                        <input class="validate" type="text" name="color.color.minor1" maxlength="6" value="{{color.color.minor1}}" data-modal="color.color.minor1">
+                                                        <input class="validate" type="text" name="modules.color.color.minor1" maxlength="6" value="{{modules.color.color.minor1}}" data-modal="modules.color.color.minor1">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="color-info">
                                                     <div class="input-field">
-                                                        <input class="validate" type="text" name="color.info.minor1" maxlength="24" value="{{color.info.minor1}}" data-modal="color.info.minor1">
+                                                        <input class="validate" type="text" name="modules.color.info.minor1" maxlength="24" value="{{modules.color.info.minor1}}" data-modal="modules.color.info.minor1">
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="color-block" style="background-color: #{{color.color.minor2}}"></div>
+                                                <div class="color-block" style="background-color: #{{modules.color.color.minor2}}"></div>
                                             </td>
                                             <td>
                                                 <div class="color-value">
                                                     <div class="input-field input-color" style="width: 64px;">
                                                         <span class="color-prefix">#</span>
-                                                        <input class="validate" type="text" name="color.color.minor2" maxlength="6" value="{{color.color.minor2}}" data-modal="color.color.minor2">
+                                                        <input class="validate" type="text" name="modules.color.color.minor2" maxlength="6" value="{{modules.color.color.minor2}}" data-modal="modules.color.color.minor2">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="color-info">
                                                     <div class="input-field">
-                                                        <input class="validate" type="text" name="color.info.minor2" maxlength="24" value="{{color.info.minor2}}" data-modal="color.info.minor2">
+                                                        <input class="validate" type="text" name="modules.color.info.minor2" maxlength="24" value="{{modules.color.info.minor2}}" data-modal="modules.color.info.minor2">
                                                     </div>
                                                 </div>
                                             </td>
@@ -248,40 +248,40 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="color-block" style="background-color: #{{color.color.font1}}"></div>
+                                                <div class="color-block" style="background-color: #{{modules.color.color.font1}}"></div>
                                             </td>
                                             <td>
                                                 <div class="color-value">
                                                     <div class="input-field input-color" style="width: 64px;">
                                                         <span class="color-prefix">#</span>
-                                                        <input class="validate" type="text" name="color.color.font1" maxlength="6" value="{{color.color.font1}}" data-modal="color.color.font1">
+                                                        <input class="validate" type="text" name="modules.color.color.font1" maxlength="6" value="{{modules.color.color.font1}}" data-modal="modules.color.color.font1">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="color-info">
                                                     <div class="input-field">
-                                                        <input class="validate" type="text" name="color.info.font1" maxlength="24" value="{{color.info.font1}}" data-modal="color.info.font1">
+                                                        <input class="validate" type="text" name="modules.color.info.font1" maxlength="24" value="{{modules.color.info.font1}}" data-modal="modules.color.info.font1">
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="color-block" style="background-color: #{{color.color.font2}}"></div>
+                                                <div class="color-block" style="background-color: #{{modules.color.color.font2}}"></div>
                                             </td>
                                             <td>
                                                 <div class="color-value">
                                                     <div class="input-field input-color" style="width: 64px;">
                                                         <span class="color-prefix">#</span>
-                                                        <input class="validate" type="text" name="color.color.font2" maxlength="6" value="{{color.color.font2}}" data-modal="color.color.font2">
+                                                        <input class="validate" type="text" name="modules.color.color.font2" maxlength="6" value="{{modules.color.color.font2}}" data-modal="modules.color.color.font2">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="color-info">
                                                     <div class="input-field">
-                                                        <input class="validate" type="text" name="color.info.font2" maxlength="24" value="{{color.info.font2}}" data-modal="color.info.font2">
+                                                        <input class="validate" type="text" name="modules.color.info.font2" maxlength="24" value="{{modules.color.info.font2}}" data-modal="modules.color.info.font2">
                                                     </div>
                                                 </div>
                                             </td>
@@ -293,7 +293,7 @@
                     </div>
                     <!-- a page end -->
                     <!-- a page start -->
-                    <div id="font" class="section scrollspy {{if !font.key}}hide{{/if}}">
+                    <div id="font" class="section scrollspy {{if !modules.font.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">标准字</div>
                             <div class="button">
@@ -307,7 +307,7 @@
                                     <br>font</div>
                             </div>
                             <div class="content">
-                                <!-- <div class="font-explan">{{font.explan}}</div> -->
+                                <!-- <div class="font-explan">{{modules.font.explan}}</div> -->
                                 <table>
                                     <thead>
                                         <tr>
@@ -319,61 +319,61 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div class="font-size" style="font-size: {{font.size1}}px">标准字</div>
+                                                <div class="font-size" style="font-size: {{modules.font.size1}}px">标准字</div>
                                             </td>
                                             <td>
                                                 <div class="input-field" style="width: 20px;">
-                                                    <input class="validate" type="text" name="font.size1" maxlength="2" value="{{font.size1}}" data-modal="font.size1">
+                                                    <input class="validate" type="text" name="modules.font.size1" maxlength="2" value="{{modules.font.size1}}" data-modal="modules.font.size1">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-field">
-                                                    <input class="validate" type="text" name="font.info1" maxlength="24" value="{{font.info1}}" data-modal="font.info1">
+                                                    <input class="validate" type="text" name="modules.font.info1" maxlength="24" value="{{modules.font.info1}}" data-modal="modules.font.info1">
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="font-size" style="font-size: {{font.size2}}px">标准字</div>
+                                                <div class="font-size" style="font-size: {{modules.font.size2}}px">标准字</div>
                                             </td>
                                             <td>
                                                 <div class="input-field" style="width: 20px;">
-                                                    <input class="validate" type="text" name="font.size2" maxlength="2" value="{{font.size2}}" data-modal="font.size2">
+                                                    <input class="validate" type="text" name="modules.font.size2" maxlength="2" value="{{modules.font.size2}}" data-modal="modules.font.size2">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-field">
-                                                    <input class="validate" type="text" name="font.info2" maxlength="24" value="{{font.info2}}" data-modal="font.info2">
+                                                    <input class="validate" type="text" name="modules.font.info2" maxlength="24" value="{{modules.font.info2}}" data-modal="modules.font.info2">
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="font-size" style="font-size: {{font.size3}}px">标准字</div>
+                                                <div class="font-size" style="font-size: {{modules.font.size3}}px">标准字</div>
                                             </td>
                                             <td>
                                                 <div class="input-field" style="width: 20px;">
-                                                    <input class="validate" type="text" name="font.size3" maxlength="2" value="{{font.size3}}" data-modal="font.size3">
+                                                    <input class="validate" type="text" name="modules.font.size3" maxlength="2" value="{{modules.font.size3}}" data-modal="modules.font.size3">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-field">
-                                                    <input class="validate" type="text" name="font.info3" maxlength="24" value="{{font.info3}}" data-modal="font.info3">
+                                                    <input class="validate" type="text" name="modules.font.info3" maxlength="24" value="{{modules.font.info3}}" data-modal="modules.font.info3">
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="font-size" style="font-size: {{font.size4}}px">标准字</div>
+                                                <div class="font-size" style="font-size: {{modules.font.size4}}px">标准字</div>
                                             </td>
                                             <td>
                                                 <div class="input-field" style="width: 20px;">
-                                                    <input class="validate" type="text" name="font.size4" maxlength="2" value="{{font.size4}}" data-modal="font.size4">
+                                                    <input class="validate" type="text" name="modules.font.size4" maxlength="2" value="{{modules.font.size4}}" data-modal="modules.font.size4">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-field">
-                                                    <input class="validate" type="text" name="font.info4" maxlength="24" value="{{font.info4}}" data-modal="font.info4">
+                                                    <input class="validate" type="text" name="modules.font.info4" maxlength="24" value="{{modules.font.info4}}" data-modal="modules.font.info4">
                                                 </div>
                                             </td>
                                         </tr>
@@ -384,7 +384,7 @@
                     </div>
                     <!-- a page end -->
                     <!-- a page start -->
-                    <div id="button" class="section scrollspy {{if !button.key}}hide{{/if}}">
+                    <div id="button" class="section scrollspy {{if !modules.button.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">按钮</div>
                             <div class="button">
@@ -402,56 +402,56 @@
                                     <div class="input-field input-color" style="width: 120px">
                                         <span>输入按钮背景色：</span>
                                         <span class="color-prefix">#</span>
-                                        <input class="validate" type="text" name="button.primary" maxlength="6" value="{{button.primary}}" data-modal="button.primary">
+                                        <input class="validate" type="text" name="modules.button.primary" maxlength="6" value="{{modules.button.primary}}" data-modal="modules.button.primary">
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">默认状态</div>
                                         <div class="detail">
-                                            <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">按下效果</div>
                                         <div class="detail f-pr">
-                                            <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
-                                            <div class="button-cover-darken" style="border-radius: {{button.radius}}px;"></div>
+                                            <div class="button-style" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-cover-darken" style="border-radius: {{modules.button.radius}}px;"></div>
                                         </div>
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">禁用效果</div>
                                         <div class="detail f-pr">
-                                            <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
-                                            <div class="button-cover-light" style="border-radius: {{button.radius}}px;"></div>
+                                            <div class="button-style" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-cover-light" style="border-radius: {{modules.button.radius}}px;"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ct-right">
                                     <div class="input-field" style="width: 240px">
                                         <span>输入按钮圆角数值（方形数值为0）</span>
-                                        <input class="validate" type="text" name="button.radius" maxlength="2" value="{{button.radius}}" data-modal="button.radius">
+                                        <input class="validate" type="text" name="modules.button.radius" maxlength="2" value="{{modules.button.radius}}" data-modal="modules.button.radius">
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">超大尺寸</div>
                                         <div class="detail">
-                                            <div class="button-style button-lg" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style button-lg" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">正常尺寸</div>
                                         <div class="detail">
-                                            <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">较小尺寸</div>
                                         <div class="detail">
-                                            <div class="button-style button-sm" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style button-sm" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="side-structure">
                                         <div class="name">超小尺寸</div>
                                         <div class="detail">
-                                            <div class="button-style button-xs" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style button-xs" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                 </div>
@@ -460,44 +460,44 @@
                                        <div class="input-field input-color" style="width: 124px">
                                             <span >输入边框色：</span>
                                             <span class="color-prefix">#</span>
-                                            <input class="validate" type="text" name="button.default" maxlength="6" value="{{button.default}}" data-modal="button.default">
+                                            <input class="validate" type="text" name="modules.button.default" maxlength="6" value="{{modules.button.default}}" data-modal="modules.button.default">
                                         </div>
                                         <div class="name">默认</div>
                                         <div class="detail">
-                                            <div class="button-style" style="background-color: #fff;border-radius: {{button.radius}}px;color: #{{button.default}};border:1px solid #{{button.default}};">按钮 BUTTON</div>
+                                            <div class="button-style" style="background-color: #fff;border-radius: {{modules.button.radius}}px;color: #{{modules.button.default}};border:1px solid #{{modules.button.default}};">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="button-list">
                                         <div class="input-field input-color" style="width: 124px">
                                             <span >输入背景色：</span>
                                             <span class="color-prefix">#</span>
-                                            <input class="validate" type="text" name="button.primary" maxlength="6" value="{{button.primary}}" data-modal="button.primary">
+                                            <input class="validate" type="text" name="modules.button.primary" maxlength="6" value="{{modules.button.primary}}" data-modal="modules.button.primary">
                                         </div>
                                         <div class="name">主要</div>
                                         <div class="detail">
-                                            <div class="button-style" style="background-color: #{{button.primary}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style" style="background-color: #{{modules.button.primary}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="button-list">
                                         <div class="input-field input-color" style="width: 124px">
                                             <span >输入背景色：</span>
                                             <span class="color-prefix">#</span>
-                                            <input class="validate" type="text" name="button.success" maxlength="6" value="{{button.success}}" data-modal="button.success">
+                                            <input class="validate" type="text" name="modules.button.success" maxlength="6" value="{{modules.button.success}}" data-modal="modules.button.success">
                                         </div>
                                         <div class="name">成功</div>
                                         <div class="detail">
-                                            <div class="button-style " style="background-color: #{{button.success}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style " style="background-color: #{{modules.button.success}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                     <div class="button-list">
                                        <div class="input-field input-color" style="width: 124px">
                                             <span >输入背景色：</span>
                                             <span class="color-prefix">#</span>
-                                            <input class="validate" type="text" name="button.danger" maxlength="6" value="{{button.danger}}" data-modal="button.danger">
+                                            <input class="validate" type="text" name="modules.button.danger" maxlength="6" value="{{modules.button.danger}}" data-modal="modules.button.danger">
                                         </div>
                                         <div class="name">危险</div>
                                         <div class="detail">
-                                            <div class="button-style" style="background-color: #{{button.danger}};border-radius: {{button.radius}}px;">按钮 BUTTON</div>
+                                            <div class="button-style" style="background-color: #{{modules.button.danger}};border-radius: {{modules.button.radius}}px;">按钮 BUTTON</div>
                                         </div>
                                     </div>
                                 </div>
@@ -506,7 +506,7 @@
                     </div>
                     <!-- a page end -->
                     <!-- a page start -->
-                    <div id="input" class="section scrollspy {{if !input.key}}hide{{/if}}">
+                    <div id="input" class="section scrollspy {{if !modules.input.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">输入框</div>
                             <div class="button">
@@ -525,20 +525,20 @@
                                         <div class="input-field input-color" style="width: 180px">
                                             <span >输入框激活状态边框颜色：</span>
                                             <span class="color-prefix">#</span>
-                                            <input class="validate" type="text" name="input.success" maxlength="6" value="{{input.success}}" data-modal="input.success">
+                                            <input class="validate" type="text" name="modules.input.success" maxlength="6" value="{{modules.input.success}}" data-modal="modules.input.success">
                                         </div>
                                     </div>
                                     <div class="input-list">
                                         <div class="input-field input-color" style="width: 180px">
                                             <span >输入框错误状态边框颜色：</span>
                                             <span class="color-prefix">#</span>
-                                            <input class="validate" type="text" name="input.danger" maxlength="6" value="{{input.danger}}" data-modal="input.danger">
+                                            <input class="validate" type="text" name="modules.input.danger" maxlength="6" value="{{modules.input.danger}}" data-modal="modules.input.danger">
                                         </div>
                                     </div>
                                     <div class="input-list">
                                         <div class="input-field" style="width: 240px">
                                             <span>输入框圆角数值（方形数值为0）</span>
-                                            <input class="validate" type="text" name="input.radius" maxlength="2" value="{{input.radius}}" data-modal="input.radius">
+                                            <input class="validate" type="text" name="modules.input.radius" maxlength="2" value="{{modules.input.radius}}" data-modal="modules.input.radius">
                                         </div>
                                     </div>
                                 </div>
@@ -546,7 +546,7 @@
                                     <div class="updown-structure" style="margin-bottom:45px;">
                                         <div class="name">未输入状态</div>
                                         <div class="detail">
-                                            <div class="input-status" style="border-radius: {{input.radius}}px;">
+                                            <div class="input-status" style="border-radius: {{modules.input.radius}}px;">
                                                 <span class="font-grey">请输入用户名</span>
                                             </div>
                                         </div>
@@ -554,7 +554,7 @@
                                     <div class="updown-structure">
                                         <div class="name">输入后状态</div>
                                         <div class="detail">
-                                            <div class="input-status" style="border-radius: {{input.radius}}px;">
+                                            <div class="input-status" style="border-radius: {{modules.input.radius}}px;">
                                                 讯飞UED
                                             </div>
                                         </div>
@@ -564,15 +564,15 @@
                                     <div class="updown-structure">
                                         <div class="name">激活状态</div>
                                         <div class="detail">
-                                            <div class="input-status" style="border-radius: {{input.radius}}px;border:1px solid #{{input.success}}"></div>
-                                            <div class="verify-status" style="color: #{{input.success}};">最多可以填写12个字符。</div>
+                                            <div class="input-status" style="border-radius: {{modules.input.radius}}px;border:1px solid #{{modules.input.success}}"></div>
+                                            <div class="verify-status" style="color: #{{modules.input.success}};">最多可以填写12个字符。</div>
                                         </div>
                                     </div>
                                     <div class="updown-structure">
                                         <div class="name">错误状态</div>
                                         <div class="detail">
-                                            <div class="input-status" style="border-radius: {{input.radius}}px;border:1px solid #{{input.danger}}"></div>
-                                            <div class="verify-status" style="color: #{{input.danger}};">请输入正确的格式！</div>
+                                            <div class="input-status" style="border-radius: {{modules.input.radius}}px;border:1px solid #{{modules.input.danger}}"></div>
+                                            <div class="verify-status" style="color: #{{modules.input.danger}};">请输入正确的格式！</div>
                                         </div>
                                     </div>
                                 </div>
@@ -580,7 +580,7 @@
                                     <div class="updown-structure">
                                         <div class="name">多行输入框</div>
                                         <div class="detail">
-                                            <div class="textarea-status" style="border-radius: {{input.radius}}px;">
+                                            <div class="textarea-status" style="border-radius: {{modules.input.radius}}px;">
                                                 <div class="counter">0/50</div>
                                             </div>
                                         </div>
@@ -591,7 +591,7 @@
                     </div>
                     <!-- a page end -->
                     <!-- a page start -->
-                    <div id="select" class="section scrollspy {{if !select.key}}hide{{/if}}">
+                    <div id="select" class="section scrollspy {{if !modules.select.key}}hide{{/if}}">
                         <div class="pages-title">
                             <div class="name">下拉选择</div>
                             <div class="button">
@@ -608,19 +608,19 @@
                                 <div class="ct-left" style="margin-top: 40px">
                                     <div class="input-field" style="width: 240px">
                                         <span>输入按钮圆角数值（方形数值为0）</span>
-                                        <input class="validate" type="text" name="select.radius" maxlength="2" value="{{select.radius}}" data-modal="select.radius">
+                                        <input class="validate" type="text" name="modules.select.radius" maxlength="2" value="{{modules.select.radius}}" data-modal="modules.select.radius">
                                     </div>
                                     <div class="input-field input-color" style="width: 230px">
                                         <span >输入选中颜色：</span>
                                         <span class="color-prefix">#</span>
-                                        <input class="validate" type="text" name="select.active" maxlength="6" value="{{select.active}}" data-modal="select.active">
+                                        <input class="validate" type="text" name="modules.select.active" maxlength="6" value="{{modules.select.active}}" data-modal="modules.select.active">
                                     </div>
                                 </div>
                                 <div class="ct-right" style="margin-top: 40px">
                                     <div class="updown-structure">
                                         <div class="name">普通状态</div>
                                         <div class="detail">
-                                            <div class="select-box" style="border-radius: {{select.radius}}px;">请选择省份
+                                            <div class="select-box" style="border-radius: {{modules.select.radius}}px;">请选择省份
                                                 <i class="right fas fa-angle-down" style="margin-top: 8px;color: #78909c"></i>
                                             </div>
                                         </div>
@@ -628,11 +628,11 @@
                                     <div class="updown-structure">
                                         <div class="name">展开状态</div>
                                         <div class="detail">
-                                            <div class="select-box" style="border-radius: {{select.radius}}px">请选择省份
+                                            <div class="select-box" style="border-radius: {{modules.select.radius}}px">请选择省份
                                                 <i class="right fas fa-angle-up" style="margin-top: 8px;color: #78909c"></i>
                                             </div>
-                                            <div class="select-fold" style="border-radius: {{select.radius}}px">
-                                                <p style="background-color:#{{select.active}};color:#fff">北京</p>
+                                            <div class="select-fold" style="border-radius: {{modules.select.radius}}px">
+                                                <p style="background-color:#{{modules.select.active}};color:#fff">北京</p>
                                                 <p>上海</p>
                                                 <p>广东</p>
                                                 <p>安徽</p>
@@ -642,6 +642,15 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- a page end -->
+                    <!-- a page start -->
+    
+                    <div class="section scrollspy {{if recyleCount !== modulesCount}}hide{{/if}}">
+                        <div class="pages pages-border ui-demo01-exception">
+                            <div><img src="img/emoji01.gif"></div>
+                            <h5>好像所有的页面都被你移除了噢～<br/>隔壁的回收站还可以恢复～</h5>
                         </div>
                     </div>
                     <!-- a page end -->

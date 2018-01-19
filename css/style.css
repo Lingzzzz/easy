@@ -523,6 +523,7 @@ header {
     top: 30px;
     left: 0; }
   .ui-demo01-cover .input-color input[type=text]:not(.browser-default) {
+    text-transform: uppercase;
     padding-left: 12px; }
   .ui-demo01-cover input[type=text]:not(.browser-default):focus:not([readonly]) {
     border-bottom: 1px solid #b0bec5;
@@ -672,3 +673,17 @@ header {
   .ui-demo01-select .select-fold p {
     padding: 4px 8px;
     margin: 8px 0; }
+
+.ui-demo01-exception {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  color: #263238;
+  text-align: center;
+  padding-top: 60px; }
+  .ui-demo01-exception h5 {
+    font-size: 18px;
+    line-height: 32px; }

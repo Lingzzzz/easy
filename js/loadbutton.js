@@ -16,6 +16,7 @@
         this.$body               = $(document.body)
         this.$element            = $(element)
         this.$elementTxt         = $(element).html()
+        // var html = ''+
     }
 
     LoadButton.VERSION  = '3.4.0'
@@ -32,7 +33,7 @@
         var e = $.Event('loading.bs.loadbtn', { relatedTarget: _relatedTarget })
         this.$element.trigger(e);
 
-        ele.addClass('disabled')
+        ele.addClass('disabled').attr('disabled',true)
         ele.data('loading-txt')?ele.text(ele.data('loading-txt')):ele.text('生成中...')
     };
 

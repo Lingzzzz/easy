@@ -16,8 +16,9 @@ var page = {
     loadPageData: function() {
         var _self = this;
         if (localStorage.getItem('data')) {
-            this.renderPage(JSON.parse(localStorage.getItem('data')));
-            _self.getRemoveData()
+            this.renderPage(_self.pageData);
+            _self.getRemoveData();
+
         } else {
             $.getJSON('config/uiDemo1.json', function(data) {
                 //本地存储数据
@@ -28,8 +29,7 @@ var page = {
                 //页面模版渲染
                 _self.renderPage(data);
 
-            });
-
+            }); 
         }
     },
     renderPage: function(data) {
@@ -39,13 +39,14 @@ var page = {
         $('.left-menu').html(menuHtml);
         $('.collapsible').collapsible();
         $('.scrollspy').scrollSpy();
-
+        console.log(data);
     },
     savePageData: function() {
         $('[data-modal]').each(function() {
             page.formatModel($(this).attr('data-modal'), $(this).val().replace(/\n|\r\n/g, "<br/>"));
         })
         localStorage.setItem('data', JSON.stringify(this.pageData));
+        window.open("../demo1-generate.html",'_self');
 
         //todo:数据提交到服务端
         //pageData user->templateid->pageData;
@@ -66,23 +67,29 @@ var page = {
         })
     },
     pageOpration: function(id, key) { //对页面进行操作
-        this.pageData[id].key = key;
+        this.pageData.modules[id].key = key;
+
+        this.getRemoveData();
 
         this.renderPage(this.pageData);
 
-        this.getRemoveData();
         localStorage.setItem('data', JSON.stringify(this.pageData));
     },
     getRemoveData: function() { //更新回收站数据
-        var _self = this,
-            count = 0;
+        var _self = this
 
-        for (var i in _self.pageData) {
-            if (!_self.pageData[i].key) {
-                count++;
+        _self.pageData.recyleCount = 0;
+
+        for (var i in _self.pageData.modules) {
+            if (!_self.pageData.modules[i].key) {
+                _self.pageData.recyleCount++;
             }
         }
-        $('#recycle-box').text(count);
+        if (_self.pageData.recyleCount == _self.pageData.modulesCount) {
+            $('.j-goGeneratePage').addClass('disabled').attr('disabled',true);
+        }else{
+            $('.j-goGeneratePage').removeClass('disabled').attr('disabled',false);
+        }
     },
     formatModel: function(modalData, val) {
         return new Function("return page.pageData." + modalData + "=\'" + val + "\'")()
@@ -106,7 +113,7 @@ function initPageIndex(){
 function propChange(){
     $(document).ready(function(){
         //cover input onchange
-        $("input[data-modal='cover.background_color']").blur(function() {
+        $("input[data-modal='modules.cover.background']").blur(function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -122,21 +129,21 @@ function propChange(){
                 }
             }
         });
-        $("input[data-modal^='color.color']").blur(function() {
+        $("input[data-modal^='modules.color.color']").blur(function() {
             $(this).parents('tr').find('.color-block').css('background-color','#'+$(this).val());
         });
         //font input onchange
-        $("input[data-modal^='font.size']").blur(function() {
+        $("input[data-modal^='modules.font.size']").blur(function() {
             $(this).parents('tr').find('.font-size').css('font-size', $(this).val()+'px');
         });
 
         //button input onchange
-        $("input[data-modal='button.radius']").blur(function() {
+        $("input[data-modal='modules.button.radius']").blur(function() {
            $('.ui-demo01-button').find('.button-style,.button-cover-darken,.button-cover-light').css('border-radius',$(this).val()+'px');
         });
 
         //button input onchange
-        $("input[data-modal='button.primary']").blur(function() {
+        $("input[data-modal='modules.button.primary']").blur(function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -159,16 +166,16 @@ function propChange(){
                         });
                 }
             }
-           $("input[data-modal='button.primary']").val($(this).val());
+           $("input[data-modal='modules.button.primary']").val($(this).val());
         });
-        $("input[data-modal='button.default']").blur(function() {
+        $("input[data-modal='modules.button.default']").blur(function() {
             $(this).parents('.button-list').find('.button-style').css({
                 "color":"#"+$(this).val(),
                 "border":"1px solid #"+$(this).val()
             });
         });
 
-        $("input[data-modal='button.success'],input[data-modal='button.danger']").blur(function() {
+        $("input[data-modal='modules.button.success'],input[data-modal='modules.button.danger']").blur(function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -186,11 +193,11 @@ function propChange(){
         });
 
         //input input onchange
-        $("input[data-modal='input.radius']").blur(function() {
+        $("input[data-modal='modules.input.radius']").blur(function() {
            $('.ui-demo01-input').find('.input-status,.textarea-status').css('border-radius',$(this).val()+'px');
         });
 
-        $("input[data-modal='input.success'],input[data-modal='input.danger']").blur(function() {
+        $("input[data-modal='modules.input.success'],input[data-modal='modules.input.danger']").blur(function() {
             var index = $(this).parents('.input-list').index();
             $('.ui-demo01-input .ct-right .updown-structure').eq(index)
               .find('.input-status')
@@ -201,11 +208,11 @@ function propChange(){
         });
 
         //select input onchange
-        $("input[data-modal='select.radius']").blur(function() {
+        $("input[data-modal='modules.select.radius']").blur(function() {
            $('.ui-demo01-select').find('.select-box,.select-fold').css('border-radius',$(this).val()+'px');
         });
 
-        $("input[data-modal='select.active']").blur(function() {
+        $("input[data-modal='modules.select.active']").blur(function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
