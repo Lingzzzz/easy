@@ -45,7 +45,7 @@ var page = {
             page.formatModel($(this).attr('data-modal'), $(this).val().replace(/\n|\r\n/g, "<br/>"));
         })
         localStorage.setItem('data', JSON.stringify(this.pageData));
-        window.open("../demo1-generate.html",'_self');
+        window.open("./demo1-generate.html",'_self');
 
         //todo:数据提交到服务端
         //pageData user->templateid->pageData;

@@ -419,7 +419,9 @@ $.getJSON('config/uiDemo1.json', function(data) {
     var html = template("standardPages-tpl", data);
     $('.standard-container').html(html);
 });
-$('.standard-container-border').height($('.standard-container').height());
+$(document).ready(function(){
+    $('.standard-container-border').height($('.standard-container').height());
+});
 </script>
 </body>
 
