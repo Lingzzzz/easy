@@ -17,6 +17,12 @@ header{
     } 
   }
 }
+.header-fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
 .top-nav {
   display:flex;
   display:-webkit-flex;
@@ -75,6 +81,18 @@ header{
       right: -2px;
     }
   }//user end 
+  button{
+    .preloader-wrapper{
+      top: 6px;
+    }
+    .preloader-wrapper.small{
+      width: 24px;
+      height: 24px;
+    }
+    .circle-clipper .circle{
+      border-width: 2px;
+    }
+  }
 }//top-nav end
 
 .top-nav-white{

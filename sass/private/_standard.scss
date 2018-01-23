@@ -56,11 +56,16 @@
   }
 }//left-menu
 
-
+.standard-container-border{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 960px;
+  border:1px solid $border;
+}
 .standard-container{
   height: 100%;
-  margin: 36px 0;
-  border:1px solid $border;
+  margin: 86px 0;
   .pages{
   width: 960px;
   height: 540px;

@@ -10,7 +10,6 @@ var page = {
         this.loadPageData();
         this.removePage();
         this.restorePage();
-
     },
     pageData: localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : {},
     loadPageData: function() {
@@ -98,7 +97,6 @@ var page = {
 }
 
 
-
 function initPageIndex(){
     $('.page-twoPart').each(function(index) {
         index = index + 1;
@@ -112,8 +110,10 @@ function initPageIndex(){
 
 function propChange(){
     $(document).ready(function(){
+
+
         //cover input onchange
-        $("input[data-modal='modules.cover.background']").blur(function() {
+        $("input[data-modal='modules.cover.background']").bind('input propertychange', function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -129,21 +129,21 @@ function propChange(){
                 }
             }
         });
-        $("input[data-modal^='modules.color.color']").blur(function() {
+        $("input[data-modal^='modules.color.color']").bind('input propertychange', function() {
             $(this).parents('tr').find('.color-block').css('background-color','#'+$(this).val());
         });
         //font input onchange
-        $("input[data-modal^='modules.font.size']").blur(function() {
+        $("input[data-modal^='modules.font.size']").bind('input propertychange', function() {
             $(this).parents('tr').find('.font-size').css('font-size', $(this).val()+'px');
         });
 
         //button input onchange
-        $("input[data-modal='modules.button.radius']").blur(function() {
+        $("input[data-modal='modules.button.radius']").bind('input propertychange', function() {
            $('.ui-demo01-button').find('.button-style,.button-cover-darken,.button-cover-light').css('border-radius',$(this).val()+'px');
         });
 
         //button input onchange
-        $("input[data-modal='modules.button.primary']").blur(function() {
+        $("input[data-modal='modules.button.primary']").bind('input propertychange', function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -168,14 +168,14 @@ function propChange(){
             }
            $("input[data-modal='modules.button.primary']").val($(this).val());
         });
-        $("input[data-modal='modules.button.default']").blur(function() {
+        $("input[data-modal='modules.button.default']").bind('input propertychange', function() {
             $(this).parents('.button-list').find('.button-style').css({
                 "color":"#"+$(this).val(),
                 "border":"1px solid #"+$(this).val()
             });
         });
 
-        $("input[data-modal='modules.button.success'],input[data-modal='modules.button.danger']").blur(function() {
+        $("input[data-modal='modules.button.success'],input[data-modal='modules.button.danger']").bind('input propertychange', function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -193,7 +193,7 @@ function propChange(){
         });
 
         //input input onchange
-        $("input[data-modal='modules.input.radius']").blur(function() {
+        $("input[data-modal='modules.input.radius']").bind('input propertychange', function() {
            $('.ui-demo01-input').find('.input-status,.textarea-status').css('border-radius',$(this).val()+'px');
         });
 
@@ -208,11 +208,11 @@ function propChange(){
         });
 
         //select input onchange
-        $("input[data-modal='modules.select.radius']").blur(function() {
+        $("input[data-modal='modules.select.radius']").bind('input propertychange', function() {
            $('.ui-demo01-select').find('.select-box,.select-fold').css('border-radius',$(this).val()+'px');
         });
 
-        $("input[data-modal='modules.select.active']").blur(function() {
+        $("input[data-modal='modules.select.active']").bind('input propertychange', function() {
             var val = $(this).val();
             if (val.length==3 || val.length==6) {
                 if (decideFontColor(val)==true) {
@@ -234,25 +234,33 @@ function propChange(){
 function renderStandard(){
   //render png function
   $('.j-renderPng').on('click',function(){
+    $('.j-renderPng').loadingbtn('config',{
+        html:true,
+        normalTpl:'保存为PNG',
+    });
     _self = $(this);
-    _self.loadbutton('loading');
-    $('.standard-container').addClass('f-noBorder');
+    _self.loadingbtn('loading');
+    $('.standard-container').clone().appendTo('#renderPages');
     html2canvas($('#renderPages'),{
       onrendered:function(canvas){      
       downloadFile('视觉规范'+Date.now()+'.png',canvas.toDataURL('image/png', 1.0));
-      _self.loadbutton('success');    
+      _self.loadingbtn('success');
+      setTimeout(function (){_self.loadingbtn('reset')},2000);
       },
         background:"#ffffff"
     });
-    $('.standard-container').removeClass('f-noBorder');
-    
+    $('#renderPages').empty();
   });
 
  //render pdf function
   $('.j-renderPdf').on('click',function(){
+    $('.j-renderPdf').loadingbtn('config',{
+        html:true,
+        normalTpl:'保存为PDF',
+    });
      _self = $(this);
-     _self.loadbutton('loading');
-    $('.standard-container').addClass('f-noBorder');
+     _self.loadingbtn('loading');
+     $('.standard-container').clone().appendTo('#renderPages');
         html2canvas($('#renderPages'),{
           onrendered:function(canvas){
             var contentWidth = canvas.width;
@@ -268,7 +276,6 @@ function renderStandard(){
                 unit: 'pt',
                 format: [960, 540]
             });
-            $('.standard-container').removeClass('f-noBorder');
              if (leftHeight < pageHeight) {
                   pdf.addImage(pageData, 'png', 0, 0, imgWidth, imgHeight );
               } else {
@@ -282,14 +289,17 @@ function renderStandard(){
                   }
               }
               pdf.save('视觉规范'+Date.now()+'.pdf');
-            _self.loadbutton('success');
+              _self.loadingbtn('success');
+              setTimeout(function (){_self.loadingbtn('reset')},2000);
           },
             background:"#ffffff"
         });
-     
+     $('#renderPages').empty();
   });
 
 }
+
+
 
 //base64 transform to blob object
 function base64Img2Blob(code) {

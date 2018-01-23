@@ -125,11 +125,13 @@ input[type=text]:not(.browser-default):focus:not([readonly]) + label {
   color: #fbc02d; }
 
 .g-wrap {
+  position: relative;
   width: 1200px;
   margin: 0 auto; }
 
 .g-wrap-960 {
-  width: 962px;
+  position: relative;
+  width: 960px;
   margin: 0 auto; }
 
 .main-wrap {
@@ -142,7 +144,8 @@ input[type=text]:not(.browser-default):focus:not([readonly]) + label {
 
 .right-side {
   float: left;
-  width: calc(100% - 240px); }
+  width: calc(100% - 240px);
+  margin-left: 200px; }
 
 header {
   width: 100%;
@@ -158,6 +161,12 @@ header {
   background-color: #fff; }
   .header-white .top-nav a, .header-white .top-nav a:hover {
     color: #263238; }
+
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99; }
 
 .top-nav {
   display: flex;
@@ -205,6 +214,13 @@ header {
       position: absolute;
       top: 0;
       right: -2px; }
+  .top-nav button .preloader-wrapper {
+    top: 6px; }
+  .top-nav button .preloader-wrapper.small {
+    width: 24px;
+    height: 24px; }
+  .top-nav button .circle-clipper .circle {
+    border-width: 2px; }
 
 .top-nav-white {
   color: #263238; }
@@ -297,20 +313,22 @@ header {
       letter-spacing: 2px;
       margin: 24px 0 124px 0; }
 
-.left-side-fixed {
-  min-height: 400px; }
-  .left-side-fixed .table-of-contents {
-    position: fixed;
-    overflow: auto; }
-  .left-side-fixed .table-of-contents li {
-    padding: 6px 0; }
-  .left-side-fixed .table-of-contents a {
-    padding-left: 16px; }
-  .left-side-fixed .table-of-contents a:hover {
-    color: #fbc02d;
-    border: none; }
-  .left-side-fixed .table-of-contents a.active {
-    border-left: 2px solid #fbc02d; }
+.left-side-fixed .table-of-contents {
+  position: fixed;
+  overflow: auto; }
+
+.left-side-fixed .table-of-contents li {
+  padding: 6px 0; }
+
+.left-side-fixed .table-of-contents a {
+  padding-left: 16px; }
+
+.left-side-fixed .table-of-contents a:hover {
+  color: #fbc02d;
+  border: none; }
+
+.left-side-fixed .table-of-contents a.active {
+  border-left: 2px solid #fbc02d; }
 
 .list-row {
   width: 100%; }
@@ -425,10 +443,16 @@ header {
     float: right;
     margin-right: 16px; }
 
+.standard-container-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 960px;
+  border: 1px solid #b0bec5; }
+
 .standard-container {
   height: 100%;
-  margin: 36px 0;
-  border: 1px solid #b0bec5; }
+  margin: 86px 0; }
   .standard-container .pages {
     width: 960px;
     height: 540px;

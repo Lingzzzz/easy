@@ -11,11 +11,9 @@
 </head>
 
 <body>
-<header class="header-white">
+<header class="header-white header-fixed">
   <div class="top-nav">
-      <div class="nav-left">
-          <div class="nav-left"><a href="standard.html"><span class="fas fa-angle-left"></span>返回</a></div>
-      </div>
+      <div class="nav-left"><a href="standard.html"><span class="fas fa-angle-left"></span>返回</a></div>
       <div class="nav-right">
         <a href="demo1-fillin.html"><button class="waves-effect waves-light btn yellow darken-2">开始制作</button></a>
       </div>
@@ -24,8 +22,8 @@
 <!-- main start -->
 <div class="main-wrap">
     <div class="g-wrap-960">
-        <div class="standard-container">
-        </div>
+        <div class="standard-container-border"></div>
+        <div class="standard-container"></div>
         <script type="text/html" id="standardPages-tpl">
             <!-- a page start -->
             
@@ -421,7 +419,7 @@ $.getJSON('config/uiDemo1.json', function(data) {
     var html = template("standardPages-tpl", data);
     $('.standard-container').html(html);
 });
-
+$('.standard-container-border').height($('.standard-container').height());
 </script>
 </body>
 

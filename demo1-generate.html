@@ -11,11 +11,9 @@
 </head>
 
 <body>
-<header class="header-white">
+<header class="header-white header-fixed">
   <div class="top-nav">
-      <div class="nav-left">
-          <div class="nav-left"><a href="demo1-fillin.html"><span class="fas fa-angle-left"></span>返回</a></div>
-      </div>
+      <div class="nav-left"><a href="demo1-fillin.html"><span class="fas fa-angle-left"></span>返回</a></div>
       <div class="nav-right">
 
         <button class="waves-effect waves-light btn yellow darken-2 j-renderPng">保存为PNG</button>
@@ -26,9 +24,9 @@
     <!-- main start -->
     <div class="main-wrap">
         <div class="g-wrap-960">
-            <div class="standard-container" id="renderPages">
-
-            </div>
+            <div class="standard-container-border"></div>
+            <div class="standard-container"></div>
+            <div id="renderPages"></div>
             <script type="text/html" id="leftMenu-tpl">
             </script>
             <script type="text/html" id="standardPages-tpl">
@@ -426,35 +424,12 @@
     <script src="js/init.js"></script>
     <script src="js/standard.js"></script>
     <script type="text/javascript">
-
-
-  $(document).ready(function(){
-    page.init();
-    initPageIndex();
-    renderStandard();
-  });
-        $('.j-test').on('click',function(){
-            $(this).loadbutton('loading');
-
-            setTimeout(function(){
-                $(this).loadbutton('success');
-                setTimeout(function(){
-                    $(this).loadbutton('reset');
-                }.bind(this),1000);
-            }.bind(this),1000);
-        })
-
-        $('.j-test').on('loading.bs.loadbtn',function(){
-            console.log('loading.bs.loadbtn 加载中')
-        })
-
-        $('.j-test').on('success.bs.loadbtn',function(){
-            console.log('success.bs.loadbtn 成功')
-        })
-
-        $('.j-test').on('reset.bs.loadbtn',function(){
-            console.log('reset.bs.loadbtn 重置')
-        })
+          $(document).ready(function(){
+            page.init();
+            initPageIndex();
+            renderStandard();
+            $('.standard-container-border').height($('.standard-container').height());
+          });
     </script>
 </body>
 

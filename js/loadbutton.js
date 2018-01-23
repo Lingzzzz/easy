@@ -1,59 +1,76 @@
 /* ========================================================================
- * Bootstrap: loadbutton.js v3.4.0
+ * Bootstrap: loadingbtn.js v3.4.0
  * no url
- * 手艺人小王写的, Lingz 针对项目改的。
+ * 手艺人小王写的
+ * lingz针对项目改的
  * ========================================================================
  */
 
 +function ($) {
     'use strict';
 
-    // LOADBUTTON CLASS DEFINITION
+    // LOADINGBTN CLASS DEFINITION
     // ======================
 
-    var LoadButton = function(element, options){
+    var LoadingBtn = function(element, options){
         this.options             = options
         this.$body               = $(document.body)
         this.$element            = $(element)
-        this.$elementTxt         = $(element).html()
-        // var html = ''+
     }
 
-    LoadButton.VERSION  = '3.4.0'
+    LoadingBtn.VERSION  = '3.4.0'
 
-    LoadButton.TRANSITION_DURATION = 300
+    LoadingBtn.TRANSITION_DURATION = 300
 
-    LoadButton.DEFAULTS = {
-        keyboard: true,
-        show: true
+    LoadingBtn.options = {
+        html:true,
+        normalTpl:'生成',
+        loadingTpl:'生成中...<div class="preloader-wrapper small active">'+
+                   '<div class="spinner-layer spinner-yellow-only">'+
+                   '<div class="circle-clipper left"><div class="circle"></div></div>'+
+                   '<div class="gap-patch"><div class="circle"></div></div>'+
+                   '<div class="circle-clipper right"><div class="circle"></div></div>'+
+                   '</div></div>',
+        successTpl:'生成成功',
+        dangerTpl:'生成失败',
     }
 
-    LoadButton.prototype.loading = function(_relatedTarget){
+    LoadingBtn.prototype.config = function(_relatedTarget){
+        for(var i in _relatedTarget){
+            this.options[i] = _relatedTarget[i];
+        }
+    }
+
+    LoadingBtn.prototype.loading = function(_relatedTarget){
         var ele = this.$element;
         var e = $.Event('loading.bs.loadbtn', { relatedTarget: _relatedTarget })
         this.$element.trigger(e);
 
-        ele.addClass('disabled').attr('disabled',true)
-        ele.data('loading-txt')?ele.text(ele.data('loading-txt')):ele.text('生成中...')
+        ele.addClass('disabled')
+        ele.attr('disabled','true')
+
+        this.options.html?ele.html(this.options.loadingTpl):ele.text(this.options.loadingTpl)
     };
 
-    LoadButton.prototype.success = function(_relatedTarget){
+    LoadingBtn.prototype.success = function(_relatedTarget){
         var ele = this.$element;
         var e = $.Event('success.bs.loadbtn', { relatedTarget: _relatedTarget })
         this.$element.trigger(e);
 
         ele.removeClass('disabled')
-        ele.data('success-txt')?ele.text(ele.data('success-txt')):ele.text('生成成功')
+        ele.removeAttr('disabled')
+
+        this.options.html?ele.html(this.options.successTpl):ele.text(this.options.successTpl)
         ele.blur()
     }
 
-    LoadButton.prototype.fail = function(_relatedTarget){
+    LoadingBtn.prototype.fail = function(_relatedTarget){
         var ele = this.$element;
         var e = $.Event('fail.bs.loadbtn', { relatedTarget: _relatedTarget })
         this.$element.trigger(e);
 
-        ele.removeClass('disabled yellow darken-2').addClass('red lighten-1')
-        ele.data('fail-txt')?ele.text(ele.data('fail-txt')):ele.text('生成失败')
+        ele.removeClass('disabled').addClass('red lighten-1')
+        this.options.html?ele.html(this.options.dangerTpl):ele.text(this.options.dangerTpl)
         ele.blur()
 
         if(!_relatedTarget || !!_relatedTarget.reset){
@@ -63,49 +80,49 @@
         }
     };
 
-    LoadButton.prototype.reset = function(_relatedTarget){
+    LoadingBtn.prototype.reset = function(_relatedTarget){
         var ele = this.$element;
         var e = $.Event('reset.bs.loadbtn', { relatedTarget: _relatedTarget })
         this.$element.trigger(e);
 
-        ele.removeClass('btn-danger btn-success disabled')
+        ele.removeClass('red lighten-1 disabled')
         ele.removeAttr('disabled')
-        ele.text(this.$elementTxt);
+        this.options.html?ele.html(this.options.normalTpl):ele.text(this.options.normalTpl)
         ele.blur()
     }
 
-    // LOADBUTTON PLUGIN DEFINITION
+    // LoadingBtn PLUGIN DEFINITION
     // =======================
 
     function Plugin(option, _relatedTarget) {
         return this.each(function () {
             var $this   = $(this)
             var data    = $this.data('bs.fullmodal')
-            var options = $.extend({}, LoadButton.DEFAULTS, $this.data(), typeof option == 'object' && option)
+            var options = $.extend({}, LoadingBtn.options, $this.data(), typeof option == 'object' && option)
 
-            if (!data) $this.data('bs.fullmodal', (data = new LoadButton(this, options)))
+            if (!data) $this.data('bs.fullmodal', (data = new LoadingBtn(this, options)))
             if (typeof option == 'string') data[option](_relatedTarget)
             else if (options.show) data.show(_relatedTarget)
         })
     }
 
 
-    var old = $.fn.loadbutton
+    var old = $.fn.loadingbtn
 
-    $.fn.loadbutton = Plugin
-    $.fn.loadbutton.Constructor = LoadButton
+    $.fn.loadingbtn = Plugin
+    $.fn.loadingbtn.Constructor = LoadingBtn
 
 
-    // LOADBUTTON NO CONFLICT
+    // LoadingBtn NO CONFLICT
     // =================
 
-    $.fn.loadbutton.noConflict = function () {
-        $.fn.loadbutton = old
+    $.fn.loadingbtn.noConflict = function () {
+        $.fn.loadingbtn = old
         return this
     }
 
 
-    // MODAL DATA-API
+    // LoadingBtn DATA-API
     // ==============
 
 
