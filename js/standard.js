@@ -197,14 +197,17 @@ function propChange(){
            $('.ui-demo01-input').find('.input-status,.textarea-status').css('border-radius',$(this).val()+'px');
         });
 
-        $("input[data-modal='modules.input.success'],input[data-modal='modules.input.danger']").blur(function() {
+        $("input[data-modal='modules.input.success'],input[data-modal='modules.input.danger']").bind('input propertychange', function() {
             var index = $(this).parents('.input-list').index();
+            var val = $(this).val();
+            if (val.length==3 || val.length==6) {
             $('.ui-demo01-input .ct-right .updown-structure').eq(index)
               .find('.input-status')
               .css('border','1px solid #'+$(this).val());
             $('.ui-demo01-input .ct-right .updown-structure').eq(index)
               .find('.verify-status')
               .css('color','#'+$(this).val());
+            }
         });
 
         //select input onchange

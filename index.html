@@ -1,19 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+<!DOCTYPE html>   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>EASY</title>
+  <link href="css/fontawesome-all.css" type="text/css" rel="stylesheet" />
   <link href="css/materialize.css" type="text/css" rel="stylesheet" />
   <link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+<div class="header-bg" id="headerWithBG">
+<header class="header-transparent header-inside">
+  <div class="top-nav">
+      <div class="nav-left"><a href="index.html"><i class="fab fa-pushed" style="font-size: 24px"></i>EASY</a></div>
+      <div class="nav-center">
+        <div class="menu-list">
+          <ul>
+            <li><a href="motion.html">动效库</a></li>
+            <li><a href="iconfont.html">iconfont</a></li>
+            <li><a href="standard.html">设计规范</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="user">
+          <div class="user-avatar">
+            <img src="img/avatar.jpg" class="circle">
+          </div>
+          <div class="user-name">Luna Zhong
+            <div class="user-icon"> <i class="fas fa-caret-down"></i></div>
+          </div>
+         
+        </div>
+      </div>
+  </div>
+</header>
+</div>
 
+<!-- main -->
+<div class="main-wrap">
+  <div class="g-wrap">
+  </div>
+</div>
+<!-- main end -->
 
+<!-- footer -->
+<footer class="page-footer">
+  <div class="container">
+      <div class="center-align">2018 © iFlyTek UED Team</div>
+  </div>
+</footer>
+<!-- footer end -->
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
+<script src="js/particles.min.js"></script>
 <script src="js/init.js"></script>
-
+<script type="text/javascript">
+  particlesJS.load('headerWithBG', 'js/snow.json');
+  radomChangeColor();
+</script>
 </body>
 </html>
