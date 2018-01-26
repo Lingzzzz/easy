@@ -1,10 +1,42 @@
 .list-row{
   width: 100%;
-  .card-four,.card-five{
+  .card-info{
+    width: 100%;
+    padding:12px 12px 8px 12px;
+  }
+  .card-info-end{
+    padding-bottom: 12px
+  }
+  .card-item{
+    width: 100%;
+    color: $font-grey;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 0 12px 8px 12px;
+    border-radius: 0 0 4px 4px;
+    span{
+      color: $font-secgrey;
+      margin-right: 4px;
+    }
+  }
+  .card-three,.card-four,.card-five{
     display: inline-block;
     margin-bottom: 24px;
     &:last-child{
       margin-right: 0;
+    }
+  }
+  .card-three{
+    width: 380px;
+    margin-right: 24px;
+    background-color: #fff;
+    .card-img,.card-img img{
+      width: 100%;
+      height: 240px;
+      border-radius: 8px 8px 0 0;
+    }
+    .card-info{
+      font-size: 18px;
     }
   }
   .card-four{
@@ -27,21 +59,5 @@
       border-radius: 4px 4px 0 0;
     }
   }
-  .card-info{
-    width: 100%;
-    padding:12px;
-    border-bottom: 1px solid $border-light;
-  }
-  .card-item{
-    width: 100%;
-    color: $font-grey;
-    font-size: 12px;
-    letter-spacing: 1px;
-    padding: 8px 12px;
-    border-radius: 0 0 4px 4px;
-    span{
-      color: $font-secgrey;
-      margin-right: 4px;
-    }
-  }
+
 }
