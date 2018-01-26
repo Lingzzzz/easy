@@ -16,23 +16,3 @@ li{
 a,a:hover{
   color:$font-basic;
 }
-/* reset scroll bar style */
-::scrollbar {
-  height: 4px;
-  width: 4px; }
-
-::scrollbar:hover {
-  background-color: #ddd;
-  border: none; }
-
-::scrollbar-thumb {
-  border: none;
-  background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }
-
-::scrollbar-thumb:hover {
-  background-color: #999; }
-
-::scrollbar-track {
-  background: rgba(255, 255, 255, 0.1); }
