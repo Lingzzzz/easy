@@ -13,10 +13,17 @@
   		width: 100%;
   		height: 100%;
   	}
+#toast-container{
+    top: inherit;
+    bottom: 440px;
+    right: 50%;
+}
+
   </style>
 </head>
 <body>
-<div class="motion-container blue-grey darken-3" id="motionContainer">
+
+<div class="motion-container blue-grey darken-3 example01" id="motionContainer">
 	<div class="bubbles">
 		<div></div>
 		<div></div>
@@ -41,18 +48,19 @@
 		<div></div>
 		<div></div>
 		<div></div>
-
 	</div>
-    <div class="motion-menuBtn">
+<!--     <div class="motion-menuBtn">
         <a href="/motionDemo/example1.zip" class="waves-effect waves-light btn yellow darken-2">
             <i class="fas fa-download"></i>下载源码
         </a>
-    </div>
+    </div> -->
 	<div class="code-container">
-
 		<div class="code-html">
 			<div class="code-tit">HTML</div>
-				<pre><code class="xml">
+            
+            <div class="code-copybtn" data-clipboard-target="#copyHtml"><i class="far fa-copy"></i>点此复制代码</div>
+            <div class="code-msg hide">1111</div>
+				<pre><code class="xml" id="copyHtml">
 &lt;div class=&quot;motion-container&quot; id=&quot;motionContainer&quot;&gt;
     &lt;div class=&quot;bubbles&quot;&gt;
         &lt;div&gt;&lt;/div&gt;
@@ -81,7 +89,8 @@
 		</div>
 		<div class="code-css">
 			<div class="code-tit">CSS</div>
-			    <pre><code class="css">
+            <div class="code-copybtn" data-clipboard-target="#copyCss"><i class="far fa-copy"></i>点此复制代码</div>
+			    <pre><code class="css" id="copyCss">
 html {
     width: 100%;
     height: 100%;
@@ -268,7 +277,8 @@ html {
 		</div>
 		<div class="code-js">
 			<div class="code-tit">JS</div>
-				<pre><code class="javascript">
+            <div class="code-copybtn" data-clipboard-target="#copyJs"><i class="far fa-copy"></i>点此复制代码</div>
+				<pre><code class="javascript" id="copyJs">
 &lt;script src=&quot;particles.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 particlesJS("motionContainer", {
@@ -387,8 +397,17 @@ particlesJS("motionContainer", {
 <script src="js/materialize.js"></script>
 <script src="js/highlight.min.js"></script>
 <script src="js/particles.min.js"></script>
+<script src="js/clipboard.js"></script>
 <script src="js/init.js"></script>
 <script type="text/javascript">
+    var clipboard = new Clipboard('.code-copybtn');
+    clipboard.on('success', function(e) {
+        Materialize.toast('复制成功!', 2000);
+    });
+
+    clipboard.on('error', function(e) {
+        Materialize.toast('复制失败～', 2000)
+    });
 	hljs.initHighlightingOnLoad();
 	particlesJS("motionContainer", {
 	  "particles": {
