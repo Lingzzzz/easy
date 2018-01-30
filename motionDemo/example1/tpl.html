@@ -1,0 +1,341 @@
+<script id="tpl-html" type="text/html">
+    &lt;div class=&quot;bubbles&quot;&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+</script>
+
+<script id="tpl-css" type="text/html">
+    html {
+    width: 100%;
+    height: 100%;
+    }
+
+    .motion-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #37474f;
+    }
+
+    .bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    }
+
+    .bubbles div {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-animation: move 36s infinite;
+    animation: move 36s infinite;
+    transition-timing-function: linear;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    }
+
+    .bubbles div:nth-child(1) {
+    left: 10%;
+    }
+
+    .bubbles div:nth-child(2) {
+    left: 20%;
+    width: 80px;
+    height: 80px;
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+    -webkit-animation-duration: 26s;
+    animation-duration: 26s;
+    }
+
+    .bubbles div:nth-child(3) {
+    left: 25%;
+    -webkit-animation-delay: -4s;
+    animation-delay: -4s;
+    }
+
+    .bubbles div:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation-duration: 30s;
+    animation-duration: 30s;
+    background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .bubbles div:nth-child(5) {
+    left: 70%;
+    }
+
+    .bubbles div:nth-child(6) {
+    left: 80%;
+    width: 70px;
+    height: 70px;
+    -webkit-animation-delay: -3s;
+    animation-delay: -3s;
+    background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .bubbles div:nth-child(7) {
+    left: 32%;
+    width: 90px;
+    height: 90px;
+    -webkit-animation-delay: -7s;
+    animation-delay: -7s;
+    }
+
+    .bubbles div:nth-child(8) {
+    left: 55%;
+    width: 20px;
+    height: 20px;
+    -webkit-animation-delay: -15s;
+    animation-delay: -15s;
+    -webkit-animation-duration: 24s;
+    animation-duration: 24s;
+    }
+
+    .bubbles div:nth-child(9) {
+    left: 25%;
+    width: 10px;
+    height: 10px;
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+    -webkit-animation-duration: 32s;
+    animation-duration: 32s;
+    }
+
+    .bubbles div:nth-child(10) {
+    left: 90%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation-delay: -11s;
+    animation-delay: -11s;
+    }
+
+    .bubbles div:nth-child(11) {
+    left: 65%;
+    -webkit-animation-duration: 22s;
+    animation-duration: 22s;
+    }
+
+    .bubbles div:nth-child(12) {
+    left: 75%;
+    width: 30px;
+    height: 30px;
+    -webkit-animation-delay: -7s;
+    animation-delay: -7s;
+    -webkit-animation-duration: 22s;
+    animation-duration: 22s;
+    }
+
+    .bubbles div:nth-child(13) {
+    left: 55%;
+    -webkit-animation-delay: -7s;
+    animation-delay: -7s;
+    }
+
+    .bubbles div:nth-child(14) {
+    left: 90%;
+    width: 44px;
+    height: 44px;
+    -webkit-animation-duration: 21s;
+    animation-duration: 21s;
+    background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .bubbles div:nth-child(15) {
+    left: 4%;
+    -webkit-animation-delay: -5s;
+    animation-delay: -5s;
+    -webkit-animation-duration: 17s;
+    animation-duration: 17s;
+    }
+
+    .bubbles div:nth-child(16) {
+    left: 66%;
+    width: 50px;
+    height: 50px;
+    -webkit-animation-delay: -13s;
+    animation-delay: -13s;
+    background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .bubbles div:nth-child(17) {
+    left: 32%;
+    width: 90px;
+    height: 90px;
+    -webkit-animation-delay: -7s;
+    animation-delay: -7s;
+    }
+
+    .bubbles div:nth-child(18) {
+    left: 55%;
+    width: 20px;
+    height: 20px;
+    -webkit-animation-delay: -5s;
+    animation-delay: -5s;
+    -webkit-animation-duration: 29s;
+    animation-duration: 29s;
+    }
+
+    .bubbles div:nth-child(19) {
+    left: 88%;
+    width: 10px;
+    height: 10px;
+    -webkit-animation-delay: -12s;
+    animation-delay: -12s;
+    -webkit-animation-duration: 19s;
+    animation-duration: 19s;
+    }
+
+    .bubbles div:nth-child(20) {
+    left: 58%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation-delay: -14s;
+    animation-delay: -14s;
+    }
+
+    @keyframes move {
+    0% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+    }
+    100% {
+    -webkit-transform: translateY(1200px);
+    transform: translateY(1200px);
+    }
+    }
+</script>
+
+<script id="tpl-js" type="text/html">
+    particlesJS(&quot;motionContainer&quot;, {
+        &quot;particles&quot;: {
+            &quot;number&quot;: {
+                &quot;value&quot;: 100,
+                &quot;density&quot;: {
+                    &quot;enable&quot;: true,
+                    &quot;value_area&quot;: 700
+                }
+            },
+            &quot;color&quot;: {
+                &quot;value&quot;: [&quot;#ff8a80&quot;, &quot;#64b5f6&quot;, &quot;#4db6ac&quot;, &quot;#ce93d8&quot;, &quot;#4dd0e1&quot;, &quot;#81c784&quot;, &quot;#ffe082&quot;]
+            },
+            &quot;shape&quot;: {
+                &quot;type&quot;: &quot;circle&quot;,
+                &quot;stroke&quot;: {
+                    &quot;width&quot;: 0,
+                    &quot;color&quot;: &quot;#000000&quot;
+                },
+                &quot;polygon&quot;: {
+                    &quot;nb_sides&quot;: 15
+                }
+            },
+            &quot;opacity&quot;: {
+                &quot;value&quot;: 0.6,
+                &quot;random&quot;: false,
+                &quot;anim&quot;: {
+                    &quot;enable&quot;: false,
+                    &quot;speed&quot;: 1.5,
+                    &quot;opacity_min&quot;: 0.15,
+                    &quot;sync&quot;: false
+                }
+            },
+            &quot;size&quot;: {
+                &quot;value&quot;: 3,
+                &quot;random&quot;: true,
+                &quot;anim&quot;: {
+                    &quot;enable&quot;: false,
+                    &quot;speed&quot;: 2,
+                    &quot;size_min&quot;: 0.15,
+                    &quot;sync&quot;: false
+                }
+            },
+            &quot;line_linked&quot;: {
+                &quot;enable&quot;: true,
+                &quot;distance&quot;: 120,
+                &quot;color&quot;: &quot;#607d8b&quot;,
+                &quot;opacity&quot;: 0.6,
+                &quot;width&quot;: 1
+            },
+            &quot;move&quot;: {
+                &quot;enable&quot;: true,
+                &quot;speed&quot;: 2,
+                &quot;direction&quot;: &quot;none&quot;,
+                &quot;random&quot;: false,
+                &quot;straight&quot;: false,
+                &quot;out_mode&quot;: &quot;out&quot;,
+                &quot;bounce&quot;: false,
+                &quot;attract&quot;: {
+                    &quot;enable&quot;: false,
+                    &quot;rotateX&quot;: 600,
+                    &quot;rotateY&quot;: 1200
+                }
+            }
+        },
+        &quot;interactivity&quot;: {
+            &quot;detect_on&quot;: &quot;canvas&quot;,
+            &quot;events&quot;: {
+                &quot;onhover&quot;: {
+                    &quot;enable&quot;: false,
+                    &quot;mode&quot;: &quot;bubble&quot;
+                },
+                &quot;onclick&quot;: {
+                    &quot;enable&quot;: false,
+                    &quot;mode&quot;: &quot;push&quot;
+                },
+                &quot;resize&quot;: true
+            },
+            &quot;modes&quot;: {
+                &quot;grab&quot;: {
+                    &quot;distance&quot;: 400,
+                    &quot;line_linked&quot;: {
+                        &quot;opacity&quot;: 1
+                    }
+                },
+                &quot;bubble&quot;: {
+                    &quot;distance&quot;: 400,
+                    &quot;size&quot;: 40,
+                    &quot;duration&quot;: 2,
+                    &quot;opacity&quot;: 8,
+                    &quot;speed&quot;: 3
+                },
+                &quot;repulse&quot;: {
+                    &quot;distance&quot;: 200,
+                    &quot;duration&quot;: 0.4
+                },
+                &quot;push&quot;: {
+                    &quot;particles_nb&quot;: 4
+                },
+                &quot;remove&quot;: {
+                    &quot;particles_nb&quot;: 2
+                }
+            }
+        },
+        &quot;retina_detect&quot;: true
+    });
+</script>
