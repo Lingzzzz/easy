@@ -19,7 +19,9 @@ function radomChangeColor() {
 
 var motions = {
     init: function() {
-        this.asyncLoadScript('../../js/motion.js')
+        var _self = this;
+        
+        this.iframeInit()
         this.loadInitData();
         this.runScript();
     },
@@ -30,7 +32,26 @@ var motions = {
         var script = document.createElement('script'); //创建script标签
         script.type = "text/javascript";
         script.src = src;
-        document.getElementById("code-iframe").contentWindow.document.getElementsByTagName('head')[0].appendChild(script); //塞进页面
+        $("#code-iframe").contents().find('head').append(script)
+    },
+    iframeInit:function(){
+        var iframe = document.createElement("iframe"),
+            _self = this;
+        iframe.src = "../motionDemo/example1/index.html";
+        iframe.id = "code-iframe"
+        iframe.name = 'codeIframe'
+
+        // if (iframe.attachEvent) {
+        //     iframe.attachEvent("onload", function() {
+        //         _self.asyncLoadScript('../../js/motion.js')
+        //     });
+        // } else {
+        //     iframe.onload = function() {
+        //         _self.asyncLoadScript('../../js/motion.js')
+        //     };
+        // }
+
+        $('.code-run').append(iframe)
     },
     htmlInit: function(data) {
         $('#copyHtml').html(data['tpl-html']);
@@ -79,8 +100,7 @@ var motions = {
     runScript: function() {
         var _self = this
         $('.js-run').on('click', function() {
-            $('#code-iframe').contents().find('#runjs').html(_self.jsArea.getValue())
-
+            // $('#code-iframe').contents().find('#runjs').html(_self.jsArea.getValue())
             document.getElementById("code-iframe").contentWindow
                 .postMessage(
                     _self.jsArea.getValue(),

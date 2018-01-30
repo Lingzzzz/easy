@@ -1,5 +1,4 @@
 function receiveMsg(e) {
-    console.log(e.data)
     return new Function(e.data)()
 }
 
