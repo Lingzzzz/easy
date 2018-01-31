@@ -1,36 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>EASY</title>
-  <link href="css/fontawesome-all.css" type="text/css" rel="stylesheet"/>
-  <link href="css/materialize.css" type="text/css" rel="stylesheet"/>
-  <link href="css/highlights/hybrid.css" type="text/css" rel="stylesheet"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet"/>
-  <style type="text/css">
-  	html{
-  		width: 100%;
-  		height: 100%;
-  	}
-#toast-container{
-    top: inherit;
-    bottom: 440px;
-    right: 50%;
-}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>EASY</title>
+    <link href="css/fontawesome-all.css" type="text/css" rel="stylesheet"/>
+    <link href="css/materialize.css" type="text/css" rel="stylesheet"/>
+    <link href="css/highlights/hybrid.css" type="text/css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="js/codemirror/codemirror.css">
+    <link rel="stylesheet" href="js/codemirror/theme/dracula.css">
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
 
-  </style>
+        #toast-container {
+            top: inherit;
+            bottom: 440px;
+            right: 50%;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .code-container .code-html, .code-container .code-css, .code-container .code-js{
+            width:33.33%;
+            float: left;
+        }
+
+    </style>
 </head>
 <body>
+<div class="code-run">
+    <a class="waves-effect waves-light btn js-run">运行</a>
+</div>
+<div class="code-container">
+    <div class="code-html">
+        <div class="code-tit">HTML</div>
 
-<div class="motion-container blue-grey darken-3 example01" id="motionContainer">
-	<div class="bubbles">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
+        <div class="code-copybtn" data-clipboard-target="#copyHtml"><i class="far fa-copy"></i>点此复制代码</div>
+        <div class="code-msg hide">1111</div>
+        <textarea class="xml" id="copyHtml"></textarea>
+    </div>
+    <div class="code-css">
+        <div class="code-tit">CSS</div>
+        <div class="code-copybtn" data-clipboard-target="#copyCss"><i class="far fa-copy"></i>点此复制代码</div>
+        <textarea class="css" id="copyCss"></textarea>
+    </div>
+    <div class="code-js">
+        <div class="code-tit">JS</div>
+        <div class="code-copybtn" data-clipboard-target="#copyJs"><i class="far fa-copy"></i>点此复制代码</div>
+        <textarea class="javascript" id="copyJs">
 
+<<<<<<< HEAD
 		<div></div>
 		<div></div>
 		<div></div>
@@ -390,131 +419,33 @@ particlesJS("motionContainer", {
 &lt;/script&gt;
 				</code></pre>
 		</div>
-	</div>
+        </textarea>
+    </div>
 </div>
+
+
 <!--  Scripts-->
 <script src="js/jquery.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/highlight.min.js"></script>
 <script src="js/motion/particles.min.js"></script>
 <script src="js/clipboard.js"></script>
+<script src="js/codemirror/codemirror.js"></script>
+<script src="js/codemirror/mode/javascript/javascript.js"></script>
+<script src="js/codemirror/mode/css/css.js"></script>
+<script src="js/codemirror/mode/xml/xml.js"></script>
+
 <script src="js/init.js"></script>
 <script type="text/javascript">
     
     var clipboard = new Clipboard('.code-copybtn');
-    clipboard.on('success', function(e) {
+    clipboard.on('success', function (e) {
         Materialize.toast('复制成功!', 2000);
     });
 
-    clipboard.on('error', function(e) {
+    clipboard.on('error', function (e) {
         Materialize.toast('复制失败～', 2000)
     });
-	hljs.initHighlightingOnLoad();
-	particlesJS("motionContainer", {
-	  "particles": {
-	    "number": {
-	      "value": 100,
-	      "density": {
-	        "enable": true,
-	        "value_area": 700
-	      }
-	    },
-	    "color": {
-	      "value": ["#ff8a80", "#64b5f6", "#4db6ac", "#ce93d8", "#4dd0e1", "#81c784", "#ffe082"]
-	    },
-	    "shape": {
-	      "type": "circle",
-	      "stroke": {
-	        "width": 0,
-	        "color": "#000000"
-	      },
-	      "polygon": {
-	        "nb_sides": 15
-	      }
-	    },
-	    "opacity": {
-	      "value": 0.6,
-	      "random": false,
-	      "anim": {
-	        "enable": false,
-	        "speed": 1.5,
-	        "opacity_min": 0.15,
-	        "sync": false
-	      }
-	    },
-	    "size": {
-	      "value": 3,
-	      "random": true,
-	      "anim": {
-	        "enable": false,
-	        "speed": 2,
-	        "size_min": 0.15,
-	        "sync": false
-	      }
-	    },
-	    "line_linked": {
-	      "enable": true,
-	      "distance": 120,
-	      "color": "#607d8b",
-	      "opacity": 0.6,
-	      "width": 1
-	    },
-	    "move": {
-	      "enable": true,
-	      "speed": 2,
-	      "direction": "none",
-	      "random": false,
-	      "straight": false,
-	      "out_mode": "out",
-	      "bounce": false,
-	      "attract": {
-	        "enable": false,
-	        "rotateX": 600,
-	        "rotateY": 1200
-	      }
-	    }
-	  },
-	  "interactivity": {
-	    "detect_on": "canvas",
-	    "events": {
-	      "onhover": {
-	        "enable": false,
-	        "mode": "bubble"
-	      },
-	      "onclick": {
-	        "enable": false,
-	        "mode": "push"
-	      },
-	      "resize": true
-	    },
-	    "modes": {
-	      "grab": {
-	        "distance": 400,
-	        "line_linked": {
-	          "opacity": 1
-	        }
-	      },
-	      "bubble": {
-	        "distance": 400,
-	        "size": 40,
-	        "duration": 2,
-	        "opacity": 8,
-	        "speed": 3
-	      },
-	      "repulse": {
-	        "distance": 200,
-	        "duration": 0.4
-	      },
-	      "push": {
-	        "particles_nb": 4
-	      },
-	      "remove": {
-	        "particles_nb": 2
-	      }
-	    }
-	  },
-	  "retina_detect": true
-	});
 </script>
 </body>
 </html>
