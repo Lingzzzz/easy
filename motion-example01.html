@@ -279,7 +279,7 @@ html {
 			<div class="code-tit">JS</div>
             <div class="code-copybtn" data-clipboard-target="#copyJs"><i class="far fa-copy"></i>点此复制代码</div>
 				<pre><code class="javascript" id="copyJs">
-&lt;script src=&quot;particles.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;<a href="https://github.com/VincentGarreau/particles.js" target="_blank">particles.min.js</a>&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 particlesJS("motionContainer", {
     "particles": {
@@ -396,10 +396,11 @@ particlesJS("motionContainer", {
 <script src="js/jquery.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/highlight.min.js"></script>
-<script src="js/particles.min.js"></script>
+<script src="js/motion/particles.min.js"></script>
 <script src="js/clipboard.js"></script>
 <script src="js/init.js"></script>
 <script type="text/javascript">
+    
     var clipboard = new Clipboard('.code-copybtn');
     clipboard.on('success', function(e) {
         Materialize.toast('复制成功!', 2000);
