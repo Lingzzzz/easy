@@ -3,28 +3,36 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>动效库-粒子动画(背景)</title>
+    <title>动效库-粒子动画</title>
     <link href="../css/fontawesome-all.css" type="text/css" rel="stylesheet"/>
     <link href="../css/materialize.css" type="text/css" rel="stylesheet"/>
     <link href="../css/codemirror.css" type="text/css" rel="stylesheet"/>
-    <link href="../css/ambiance.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/codemirror-theme.css" type="text/css" rel="stylesheet"/>
     <link href="../css/style.css" type="text/css" rel="stylesheet"/>
     <style type="text/css">
         html {
             width: 100%;
             height: 100%;
         }
+        .gutter.gutter-horizontal{
+            background-color: #263238;
+        }
     </style>
 </head>
 <body>
 
 <div class="example-container">
-<div class="menu-btn">
-    <a href="example01.zip" download class="btn btn-floating yellow darken-2">下载</a>
-    <a class="btn btn-floating yellow darken-2 j-codeRun">运行</a>
-</div>
-  <!-- <div class="handle-bar" style="background-color: #fff"></div> -->
-  <div class="code-container">
+  <div class="fixed-action-btn click-to-toggle">
+    <a class="btn-floating btn-large yellow darken-2">
+      <i class="fas fa-bars"></i>
+    </a>
+    <ul>
+      <li><a href="example01.zip" download class="btn-floating teal lighten-2">下载</a></li>
+      <li><a class="btn-floating cyan j-codeCopy" data-clipboard-target="#code">复制</a></li>
+      <li><a class="btn-floating light-blue lighten-1 j-codeRun">运行</a></li>
+    </ul>
+  </div>
+  <div class="code-container" id="codePart">
     <textarea id="code" name="code">
   particlesJS("motionContainer", {
         "particles": {
@@ -133,7 +141,7 @@
     });
     </textarea>
   </div>
-  <div class="motion-container" style="background-color: #Fbb">
+  <div class="motion-container" id="motionPart">
     <iframe src="example01/index.html" width="100%" height="100%" frameborder="0" scrolling="no" id="example" name="example">
     </iframe>
   </div>
@@ -142,11 +150,42 @@
 <!--  Scripts-->
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.js"></script>
+<script src="../js/split.js"></script>
+<script src="../js/clipboard.js"></script>
 <script src="../js/codemirror.js"></script>
 <script src="../js/codemirror/javascript.js"></script>
-<script src="../js/motion.js"></script>
 <script type="text/javascript">
-  // setHandlerBar();
+    var code = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/javascript",
+        theme: "oceanic-next",
+        lineNumbers: true,  
+        matchBrackets: true,
+        dragDrop:false
+    });
+    code.setSize('100%', '100%');
+
+    var clipboard = new Clipboard('.j-codeCopy', {
+        text: function(trigger) {
+            return $('#code').getCodeMirror().getDoc().getValue();
+        },
+    });
+
+    clipboard.on('success', function(e) {
+        Materialize.toast('复制成功!', 20000);
+    });
+
+
+    Split(['#codePart', '#motionPart'], {
+        sizes: [40, 60],
+        minSize: 240
+    });
+
+    (function($) {
+        $.fn.getCodeMirror = function() {
+            return (this.is('textarea') ? this.next('.CodeMirror') : this).get(0).CodeMirror;
+        };
+    }(jQuery));
+
   window.onload = function(){
     var iframe = document.getElementById("example").contentWindow.document;
     $('.j-codeRun').on('click',function(){

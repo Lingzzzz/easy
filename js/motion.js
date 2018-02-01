@@ -1,11 +1,11 @@
-var code = CodeMirror.fromTextArea(document.getElementById("code"), {
-    mode: "text/javascript",
-    theme: "ambiance",
-    lineNumbers: true,  
-    matchBrackets: true,
-    dragDrop:false
-});
-code.setSize('100%', '100%');
+function initMotionPages() {
+	
+}
+
+
+
+
+
 
 function setHandlerBar(){
 	var handlerisDown = false;
@@ -23,6 +23,7 @@ function setHandlerBar(){
 	        console.log("handlerisUp");
 	    });
 }
+
 function setHandlerBarPosition(percentage) {
     percentage = Math.min(0.7, Math.max(0.1, percentage));
     var position = percentage * 100;
