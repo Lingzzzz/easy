@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>动效库-粒子动画(背景)</title>
+    <link href="../css/fontawesome-all.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/codemirror.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/ambiance.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="example-container">
+<div class="menu-btn">
+    <a href="example01.zip" download class="btn btn-floating yellow darken-2">下载</a>
+    <a class="btn btn-floating yellow darken-2 j-codeRun">运行</a>
+</div>
+  <!-- <div class="handle-bar" style="background-color: #fff"></div> -->
+  <div class="code-container">
+    <textarea id="code" name="code">
+  particlesJS("motionContainer", {
+        "particles": {
+            "number": {
+                "value": 100,//解释
+                "density": {
+                    "enable": true,
+                    "value_area": 700
+                }
+            },
+            "color": {
+                "value": ["#ff8a80", "#64b5f6", "#4db6ac", "#ce93d8", "#4dd0e1", "#81c784", "#ffe082"]
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 15
+                }
+            },
+            "opacity": {
+                "value": 0.6,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1.5,
+                    "opacity_min": 0.15,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 2,
+                    "size_min": 0.15,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 120,
+                "color": "#607d8b",
+                "opacity": 0.6,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": false,
+                    "mode": "bubble"
+                },
+                "onclick": {
+                    "enable": false,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+    </textarea>
+  </div>
+  <div class="motion-container" style="background-color: #Fbb">
+    <iframe src="example01/index.html" width="100%" height="100%" frameborder="0" scrolling="no" id="example" name="example">
+    </iframe>
+  </div>
+</div>
+
+<!--  Scripts-->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/materialize.js"></script>
+<script src="../js/codemirror.js"></script>
+<script src="../js/codemirror/javascript.js"></script>
+<script src="../js/motion.js"></script>
+<script type="text/javascript">
+  // setHandlerBar();
+  window.onload = function(){
+    var iframe = document.getElementById("example").contentWindow.document;
+    $('.j-codeRun').on('click',function(){
+    var html = '<body style="margin: 0;padding: 0;">'
+                        + '<div id="motionContainer" style="width: 100%;height: 100%;background-color:#37474f"></div>'
+                        + '<script src="particles.min.js"><\/script>'
+                        + '<script>'+ code.getValue() +'<\/script><\/body>';
+    iframe.open();
+    iframe.write(html);
+    iframe.close();
+    })
+  };
+
+</script>
+</body>
+</html>

@@ -19,7 +19,7 @@ var page = {
             _self.getRemoveData();
 
         } else {
-            $.getJSON('config/uiDemo1.json', function(data) {
+            $.getJSON('../standard/config/ui01.json', function(data) {
                 //本地存储数据
                 localStorage.clear();
                 localStorage.setItem('data', JSON.stringify(data));
@@ -45,7 +45,7 @@ var page = {
             page.formatModel($(this).attr('data-modal'), $(this).val().replace(/\n|\r\n/g, "<br/>"));
         })
         localStorage.setItem('data', JSON.stringify(this.pageData));
-        window.open("./demo1-generate.html",'_self');
+        window.open("./ui01-generate.html",'_self');
 
         //todo:数据提交到服务端
         //pageData user->templateid->pageData;
