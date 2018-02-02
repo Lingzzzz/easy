@@ -13,123 +13,124 @@
         width: 100%;
         height: 100%;
     }
-    .motion-container {
-        width: 100%;
-        height: 100%;
-        background-color: #263238;
-    }
     </style>
 </head>
 
 <body>
-    <div class="motion-container" id="motionContainer"></div>
+    <div id="motionContainer" style="width: 100%;height: 100%;background-color:#263238"></div>
     <script src="particles.min.js"></script>
     <script type="text/javascript">
-    particlesJS("motionContainer", {
-            "particles": {
-                "number": {
-                    "value": 100,
-                    "density": {
-                        "enable": true,
-                        "value_area": 700
-                    }
+  particlesJS("motionContainer", {
+        "particles": {
+            "number": {
+                "value": 100,//数量
+                "density": {
+                    "enable": true,//密度开关
+                    "value_area": 700//区域空白（数值越小，粒子越密集）
+                }
+            },
+            "color": {
+                //颜色，可以是单色。
+                "value": ["#ff8a80", "#64b5f6", "#4db6ac", "#ce93d8", "#4dd0e1", "#81c784", "#ffe082"]
+            },
+            "shape": {
+                //形状，"circle","edge","triangle","polygon","star","image",可选。
+                "type": "circle",
+                "stroke": {
+                    "width": 0,//边框宽度
+                    "color": "#000000"//边框颜色
                 },
-                "color": {
-                    "value": ["#ff8a80", "#64b5f6", "#4db6ac", "#ce93d8", "#4dd0e1", "#81c784", "#ffe082"]
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 15
-                    }
-                },
-                "opacity": {
-                    "value": 0.6,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1.5,
-                        "opacity_min": 0.15,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 2,
-                        "size_min": 0.15,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 120,
-                    "color": "#607d8b",
-                    "opacity": 0.6,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
+                "polygon": {
+                    "nb_sides": 15//角的数量，没有棱角的形状不适用。
+                }
+            },
+            "opacity": {
+                "value": 0.6,//透明度
+                "random": false,//是否随机透明度
+                "anim": {
+                    "enable": false,
+                    "speed": 1.5,
+                    "opacity_min": 0.15,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,//大小
+                "random": true,//是否随机大小
+                "anim": {
+                    "enable": false,
                     "speed": 2,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
+                    "size_min": 0.15,
+                    "sync": false
                 }
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": false,
-                        "mode": "bubble"
-                    },
-                    "onclick": {
-                        "enable": false,
-                        "mode": "push"
-                    },
-                    "resize": true
+            "line_linked": {
+                "enable": true,//粒子之间是否连线
+                "distance": 120,//连线范围
+                "color": "#607d8b",//连线颜色
+                "opacity": 0.6,//连线透明度
+                "width": 1//连线粗细
+            },
+            "move": {
+                "enable": true,//是否移动
+                "speed": 2,//移动速度
+                "direction": "none",//移动的方向
+                "random": false,//
+                "straight": false,//是否笔直的移动
+                "out_mode": "out",//移动的区域
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,//是否允许鼠标hover事件
+                    "mode": "bubble"//事件类型,"grab","repulse","bubble",允许数组,["grab", "bubble"]
                 },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
+                "onclick": {
+                    "enable": false,//是否允许鼠标点击事件
+                    "mode": "push"//事件类型,"remove","bubble","repulse",允许数组,["push", "repulse"]
+                },
+                "resize": true
             },
-            "retina_detect": true
-        });
+            "modes": {
+                //连线模式（需要先允许鼠标事件）
+                "grab": {
+                    "distance": 400,//连线范围
+                    "line_linked": {
+                        "opacity": 1//连线透明度
+                    }
+                },
+                "bubble": {
+                    //气泡模式（需要先允许鼠标事件）
+                    "distance": 400,//气泡范围
+                    "size": 40,//气泡大小
+                    "duration": 2,//持续时间
+                    "opacity": 0.8,//气泡透明度
+                    "speed": 3//位移速度
+                },
+                "repulse": {
+                    //驱逐模式（需要先允许鼠标事件）
+                    "distance": 200,//驱逐距离
+                    "duration": 0.4//持续时间
+                },
+                "push": {
+                    //点击增加粒子数量（需要先允许鼠标事件）
+                    "particles_nb": 4//点击增加的粒子与周边几个粒子连线
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
         </script>
 </body>
 </html>

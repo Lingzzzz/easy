@@ -50,8 +50,15 @@
     background-color: transparent;
   }
 }
-
-
+.btn-hollow-primary{
+  color:$color-primary;
+  border: 1px solid $color-primary;
+  background-color: transparent;
+  &:hover,&:focus{
+    color:$color-primary;
+    background-color: transparent;
+  }
+}
 .page-footer{
   padding: 40px 0 32px 0;
   background-color: #1e1400;

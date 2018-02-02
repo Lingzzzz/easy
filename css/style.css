@@ -85,6 +85,14 @@ body {
     color: #fff;
     background-color: transparent; }
 
+.btn-hollow-primary {
+  color: #fbc02d;
+  border: 1px solid #fbc02d;
+  background-color: transparent; }
+  .btn-hollow-primary:hover, .btn-hollow-primary:focus {
+    color: #fbc02d;
+    background-color: transparent; }
+
 .page-footer {
   padding: 40px 0 32px 0;
   background-color: #1e1400; }
@@ -221,13 +229,6 @@ header {
       position: absolute;
       top: 0;
       right: -2px; }
-  .top-nav button .preloader-wrapper {
-    top: 6px; }
-  .top-nav button .preloader-wrapper.small {
-    width: 24px;
-    height: 24px; }
-  .top-nav button .circle-clipper .circle {
-    border-width: 2px; }
 
 .top-nav-full {
   width: 100%;
@@ -318,31 +319,46 @@ header {
     transform: translateY(-4px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); }
 
+.motion-header {
+  background-color: #263238;
+  border-bottom: 4px solid #455a64; }
+
+.motion-nav {
+  width: 40%;
+  padding: 0 12px 0 36px;
+  margin: inherit; }
+  .motion-nav .motion-info {
+    padding-top: 10px;
+    line-height: 17px;
+    font-family: "PingFangSC-Thin"; }
+    .motion-nav .motion-info .name {
+      font-size: 18px; }
+    .motion-nav .motion-info .depend {
+      color: #bdbdbd;
+      font-size: 12px;
+      letter-spacing: 2px; }
+  .motion-nav .motion-action {
+    margin-top: -2px;
+    margin-left: 16px; }
+    .motion-nav .motion-action a {
+      color: #fbc02d; }
+
 .example-container {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  padding-top: 54px; }
   .example-container ::-webkit-scrollbar {
     width: 6px; }
   .example-container ::-webkit-scrollbar:hover {
     border: none; }
   .example-container ::-webkit-scrollbar-thumb {
     border: none;
-    background-color: #565656; }
+    border-radius: 3px;
+    background-color: #fbc02d; }
   .example-container ::-webkit-scrollbar-thumb:hover {
-    background-color: #7c7c7c; }
+    background-color: #fdd835; }
   .example-container ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1); }
-  .example-container .fixed-action-btn {
-    left: 54px;
-    bottom: 24px;
-    right: inherit; }
-    .example-container .fixed-action-btn a, .example-container .fixed-action-btn a:hover {
-      color: #fff; }
-  .example-container .btn-floating {
-    font-size: 13px; }
-  .example-container .btn-large .fas {
-    font-size: 24px;
-    margin: 0; }
+    background: #304148; }
   .example-container .code-container {
     float: left;
     width: 40%;
