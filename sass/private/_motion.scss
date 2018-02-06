@@ -19,17 +19,21 @@
   width: 40%;
   padding:0 12px 0 36px;
   margin: inherit;
+
   .motion-info{
     padding-top: 10px;
     line-height: 17px;
-    font-family: "PingFangSC-Thin";
     .name{
       font-size: 18px;
     }
     .depend{
+      font-family: "PingFangSC-Thin";
       color: #bdbdbd;
       font-size: 12px;
       letter-spacing: 2px;
+      a{
+        color: $color-primary;
+      }
     }
   }
   .motion-action{

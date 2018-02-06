@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>动效库-粒子动画</title>
+    <link href="../css/fontawesome-all.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/codemirror.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/codemirror-theme.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        .gutter.gutter-horizontal{
+            background-color: #455a64;
+        }
+        #toast-container{
+            top: 50px;
+            right: inherit;
+            left: 32%;
+        }
+    </style>
+</head>
+<body>
+<header class="header-fixed motion-header">
+    <div class="top-nav motion-nav">
+        <div class="motion-info">
+            <div class="name">粒子动画</div>
+            <div class="depend">depend on >>
+                <a href="https://threejs.org/" target="_blank">Three.js</a> <<
+            </div>
+        </div>
+        <div class="motion-action">
+            <a href="example02.zip" download class="waves-effect waves-light btn btn-small btn-hollow-primary">
+            <i class="fas fa-download"></i>下载示例</a>
+
+            <a data-clipboard-target="#code" class="waves-effect waves-light btn btn-small btn-hollow-primary j-codeCopy"><i class="fas fa-copy"></i>复制代码</a>
+
+            <a class="waves-effect waves-light btn btn-small yellow darken-2 j-codeRun" style="color: #fff">
+            <i class="fas fa-play"></i>运行代码</a>
+        </div>
+    </div>
+</header>
+<div class="example-container">
+  <div class="code-container" id="codePart">
+    <textarea id="code" name="code">
+    var SEPARATION = 120;//粒子之间的距离
+    var AMOUNTX = 60;//x轴上的粒子数量
+    var AMOUNTY = 60;//y轴上的粒子数量
+
+    var container;
+    var camera, scene, renderer;
+
+    var particles, particle, count = 0;
+
+    var mouseX = 0, mouseY = 0;
+
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+
+    init();
+    animate();
+
+    function init() {
+
+        container = document.createElement( 'div' );
+        document.body.appendChild( container );
+
+        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = 1000;
+
+        scene = new THREE.Scene();
+
+        particles = new Array();
+
+        var PI2 = Math.PI * 2;
+        var material = new THREE.SpriteCanvasMaterial( {
+
+            color: 0xffffff,
+            program: function ( context ) {
+
+                context.beginPath();
+                context.arc( 0, 0, 0.5, 0, PI2, true );
+                context.fill();
+
+            }
+
+        } );
+
+        var i = 0;
+
+        for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+            for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                particle = particles[ i ++ ] = new THREE.Sprite( material );
+                particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
+                particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
+                scene.add( particle );
+
+            }
+
+        }
+
+        renderer = new THREE.CanvasRenderer();
+        renderer.setPixelRatio( window.devicePixelRatio );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        container.appendChild( renderer.domElement );
+
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+        document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+        //
+
+        window.addEventListener( 'resize', onWindowResize, false );
+
+    }
+
+    function onWindowResize() {
+
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+    }
+
+
+    function onDocumentMouseMove( event ) {
+
+        mouseX = event.clientX - windowHalfX;
+        mouseY = event.clientY - windowHalfY;
+
+    }
+
+    function onDocumentTouchStart( event ) {
+
+        if ( event.touches.length === 1 ) {
+
+            event.preventDefault();
+
+            mouseX = event.touches[ 0 ].pageX - windowHalfX;
+            mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+        }
+
+    }
+
+    function onDocumentTouchMove( event ) {
+
+        if ( event.touches.length === 1 ) {
+
+            event.preventDefault();
+
+            mouseX = event.touches[ 0 ].pageX - windowHalfX;
+            mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+        }
+
+    }
+
+    function animate() {
+
+        requestAnimationFrame( animate );
+
+        render();
+
+    }
+
+    function render() {
+
+        camera.position.x += ( mouseX - camera.position.x ) * .05;
+        camera.position.y += ( - mouseY - camera.position.y ) * .05;
+        camera.lookAt( scene.position );
+
+        var i = 0;
+
+        for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+            for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                particle = particles[ i++ ];
+                particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
+                    ( Math.sin( ( iy + count ) * 0.5 ) * 50 );
+                particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 4 +
+                    ( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 4;
+
+            }
+
+        }
+
+        renderer.render( scene, camera );
+
+        count += 0.1;
+
+    }
+    </textarea>
+  </div>
+  <div class="motion-container" id="motionPart">
+    <iframe src="example02/index.html" width="100%" height="100%" frameborder="0" scrolling="no" id="example" name="example">
+    </iframe>
+  </div>
+</div>
+
+<!--  Scripts-->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/materialize.js"></script>
+<script src="../js/split.js"></script>
+<script src="../js/clipboard.js"></script>
+<script src="../js/codemirror.js"></script>
+<script src="../js/codemirror/javascript.js"></script>
+<script type="text/javascript">
+    var code = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/javascript",
+        theme: "oceanic-next",
+        lineNumbers: true,  
+        lineWrapping: true,
+        matchBrackets: true,
+        dragDrop:false
+    });
+    code.setSize('100%', '100%');
+
+    var clipboard = new Clipboard('.j-codeCopy', {
+        text: function(trigger) {
+            return $('#code').getCodeMirror().getDoc().getValue();
+        },
+    });
+
+    clipboard.on('success', function(e) {
+        Materialize.toast('复制成功!', 2000);
+    });
+
+
+    Split(['#codePart', '#motionPart'], {
+        gutterSize: 10,
+        sizes: [40, 60],
+        minSize: 240
+    });
+
+    (function($) {
+        $.fn.getCodeMirror = function() {
+            return (this.is('textarea') ? this.next('.CodeMirror') : this).get(0).CodeMirror;
+        };
+    }(jQuery));
+
+  window.onload = function(){
+    var iframe = document.getElementById("example").contentWindow.document;
+    $('.j-codeRun').on('click',function(){
+    var html = '<body style="margin: 0;padding: 0;">'
+             + '<script src="three.min.js"><\/script>'
+             + '<script src="Projector.js"><\/script>'
+             + '<script src="CanvasRenderer.js"><\/script>'
+             + '<script>'+ code.getValue() +'<\/script><\/body>';
+    iframe.open();
+    iframe.write(html);
+    iframe.close();
+    Materialize.toast('运行成功!', 2000);
+    })
+  };
+
+</script>
+</body>
+</html>

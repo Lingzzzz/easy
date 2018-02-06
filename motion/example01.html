@@ -18,11 +18,9 @@
             background-color: #455a64;
         }
         #toast-container{
-            top: inherit;
+            top: 50px;
             right: inherit;
-            bottom: 100px;
-            left: 124px;
-
+            left: 32%;
         }
     </style>
 </head>
@@ -49,6 +47,24 @@
 <div class="example-container">
   <div class="code-container" id="codePart">
     <textarea id="code" name="code">
+ /*
+ 
+使用场景：建议使用的地方
+ 
+随机生成粒子，连线的一个小动画。
+
+粒子的形状可选，颜色可以指定 
+
+以圆点散开与聚集来展示 logo 的一个小动画
+
+首页 logo 动画的实现代码, 提供三个logo的样式， 还可自已添加 logo，如果需定制个性化的东西，请在 LogoGather 里修改。
+
+图片默认尺寸为 300 * 300;
+
+图片取点像素为控制点的个数，以图片宽度除以像素点来决定点的个数, 默认为 20, 每行每排为15个取点。
+
+
+ */ 
   particlesJS("motionContainer", {
         "particles": {
             "number": {
@@ -119,7 +135,7 @@
             "detect_on": "canvas",
             "events": {
                 "onhover": {
-                    "enable": true,//是否允许鼠标hover事件
+                    "enable": false,//是否允许鼠标hover事件
                     "mode": "bubble"//事件类型,"grab","repulse","bubble",允许数组,["grab", "bubble"]
                 },
                 "onclick": {

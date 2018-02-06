@@ -10,6 +10,7 @@ var page = {
         this.loadPageData();
         this.removePage();
         this.restorePage();
+        this.exportFile();
     },
     pageData: localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : {},
     loadPageData: function() {
@@ -38,7 +39,7 @@ var page = {
         $('.left-menu').html(menuHtml);
         $('.collapsible').collapsible();
         $('.scrollspy').scrollSpy();
-        console.log(data);
+        
     },
     savePageData: function() {
         $('[data-modal]').each(function() {
@@ -75,7 +76,7 @@ var page = {
         localStorage.setItem('data', JSON.stringify(this.pageData));
     },
     getRemoveData: function() { //更新回收站数据
-        var _self = this
+        var _self = this;
 
         _self.pageData.recyleCount = 0;
 
@@ -93,9 +94,35 @@ var page = {
     formatModel: function(modalData, val) {
         return new Function("return page.pageData." + modalData + "=\'" + val + "\'")()
     },
-
+    exportFile:function(){
+        console.log(this.pageData.modules);
+        var btn = this.pageData.modules.button;
+        var input = this.pageData.modules.input;
+        $('.j-exportClass').click( function() {
+          var css = '.btn{\n'
+                  +'border-radius:'+ btn.radius +'px;}\n'
+                  +'.btn-default{\n'
+                  +'color: #'+ btn.default +';\n'
+                  +'background-color: #fff;\n'
+                  +'border: 1 solid #'+ btn.default +'; }\n'
+                  +'.btn-primary {\n'
+                  +'background-color: #'+ btn.primary +';\n'
+                  +'border-color: #'+ btn.primary +'; }\n'
+                  +'.btn-success {\n'
+                  +'background-color: #'+ btn.success +';\n'
+                  +'border-color: #'+ btn.success +'; }\n'
+                  +'.btn-danger {\n'
+                  +'background-color: #'+ btn.danger +';\n'
+                  +'border-color: #'+ btn.danger +'; }\n'
+                  +'.form-control {\n'
+                  +'border-radius:'+ input.radius +'px; }\n'
+                  +'.form-control:focus {\n'
+                  +'border-color:#'+ input.success +'; }\n';
+          var blob = new Blob([css], {type: "text/plain;charset=utf-8"});
+          saveAs(blob, Date.now()+'.css');
+        });
+    },
 }
-
 
 function initPageIndex(){
     $('.page-twoPart').each(function(index) {
@@ -110,8 +137,6 @@ function initPageIndex(){
 
 function propChange(){
     $(document).ready(function(){
-
-
         //cover input onchange
         $("input[data-modal='modules.cover.background']").bind('input propertychange', function() {
             var val = $(this).val();
@@ -246,7 +271,7 @@ function renderStandard(){
     $('.standard-container').clone().appendTo('#renderPages');
     html2canvas($('#renderPages'),{
       onrendered:function(canvas){      
-      downloadFile('视觉规范'+Date.now()+'.png',canvas.toDataURL('image/png', 1.0));
+      downloadFile(canvas.toDataURL('image/png', 1.0),'视觉规范'+Date.now()+'.png');
       _self.loadingbtn('success');
       setTimeout(function (){_self.loadingbtn('reset')},2000);
       },
@@ -318,7 +343,7 @@ function base64Img2Blob(code) {
 }
 
 //download File
-function downloadFile(fileName, content) {
+function downloadFile(content,fileName) {
     var aLink = document.createElement('a');
     var blob = base64Img2Blob(content); //new Blob([content]);
     aLink.download = fileName;
@@ -328,6 +353,7 @@ function downloadFile(fileName, content) {
     event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     aLink.dispatchEvent(event);
 }
+
 
 function decideFontColor(color){
     var sColor = color.toLowerCase();

@@ -18,6 +18,7 @@
 
         <button class="waves-effect waves-light btn yellow darken-2 j-renderPng">保存为PNG</button>
         <button class="waves-effect waves-light btn yellow darken-2 j-renderPdf">保存为PDF</button>
+        <button class="waves-effect waves-light btn yellow darken-2 j-exportClass">导出为CSS</button>
       </div>
   </div>
 </header>
@@ -421,8 +422,13 @@
     <script src="../js/loadbutton.js"></script>
     <script src="../js/html2canvas.js"></script>
     <script src="../js/jspdf.js"></script>
+    <script src="../js/FileSaver.js"></script>
     <script src="../js/standard.js"></script>
     <script type="text/javascript">
+
+
+
+
           $(document).ready(function(){
             page.init();
             initPageIndex();

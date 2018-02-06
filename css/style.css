@@ -329,14 +329,16 @@ header {
   margin: inherit; }
   .motion-nav .motion-info {
     padding-top: 10px;
-    line-height: 17px;
-    font-family: "PingFangSC-Thin"; }
+    line-height: 17px; }
     .motion-nav .motion-info .name {
       font-size: 18px; }
     .motion-nav .motion-info .depend {
+      font-family: "PingFangSC-Thin";
       color: #bdbdbd;
       font-size: 12px;
       letter-spacing: 2px; }
+      .motion-nav .motion-info .depend a {
+        color: #fbc02d; }
   .motion-nav .motion-action {
     margin-top: -2px;
     margin-left: 16px; }
