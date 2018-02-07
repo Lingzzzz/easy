@@ -8,6 +8,13 @@
     <link href="../css/fontawesome-all.css" type="text/css" rel="stylesheet" />
     <link href="../css/materialize.css" type="text/css" rel="stylesheet" />
     <link href="../css/style.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+        .dropdown-content li{
+            color: #FBC02D;
+            font-size: 16px;
+            padding: 14px 16px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,10 +22,12 @@
   <div class="top-nav">
       <div class="nav-left"><a href="ui01-fillin.html"><span class="fas fa-angle-left"></span>返回</a></div>
       <div class="nav-right">
-
-        <button class="waves-effect waves-light btn yellow darken-2 j-renderPng">保存为PNG</button>
-        <button class="waves-effect waves-light btn yellow darken-2 j-renderPdf">保存为PDF</button>
-        <button class="waves-effect waves-light btn yellow darken-2 j-exportClass">导出为CSS</button>
+          <button class='dropdown-button waves-effect waves-light btn yellow darken-2' data-activates='dropdown1'>导出为...</button>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li class="j-renderPng">导出为PNG</li>
+            <li class="j-renderPdf">导出为PDF</li>
+            <li class="j-exportClass">导出为CSS</li>
+          </ul>
       </div>
   </div>
 </header>
@@ -419,16 +428,11 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/materialize.js"></script>
     <script src="../js/template-web.js"></script>
-    <script src="../js/loadbutton.js"></script>
-    <script src="../js/html2canvas.js"></script>
     <script src="../js/jspdf.js"></script>
+    <script src="../js/html2canvas.js"></script>
     <script src="../js/FileSaver.js"></script>
     <script src="../js/standard.js"></script>
     <script type="text/javascript">
-
-
-
-
           $(document).ready(function(){
             page.init();
             initPageIndex();

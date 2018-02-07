@@ -262,34 +262,33 @@ function propChange(){
 function renderStandard(){
   //render png function
   $('.j-renderPng').on('click',function(){
-    $('.j-renderPng').loadingbtn('config',{
-        html:true,
-        normalTpl:'保存为PNG',
-    });
-    _self = $(this);
-    _self.loadingbtn('loading');
     $('.standard-container').clone().appendTo('#renderPages');
+    var width = $('.standard-container').outerWidth(),
+        height = $('.standard-container').outerHeight(),
+        scale = window.devicePixelRatio;
     html2canvas($('#renderPages'),{
-      onrendered:function(canvas){      
-      downloadFile(canvas.toDataURL('image/png', 1.0),'视觉规范'+Date.now()+'.png');
-      _self.loadingbtn('success');
-      setTimeout(function (){_self.loadingbtn('reset')},2000);
+        scale: scale,
+        width: width,
+        height: height,
+        onrendered:function(canvas){   
+        canvas.toBlob(function(blob) {
+            saveAs(blob, '视觉规范'+Date.now()+'.png');
+        });   
       },
         background:"#ffffff"
     });
     $('#renderPages').empty();
   });
-
  //render pdf function
   $('.j-renderPdf').on('click',function(){
-    $('.j-renderPdf').loadingbtn('config',{
-        html:true,
-        normalTpl:'保存为PDF',
-    });
-     _self = $(this);
-     _self.loadingbtn('loading');
      $('.standard-container').clone().appendTo('#renderPages');
+     var width = $('.standard-container').outerWidth(),
+        height = $('.standard-container').outerHeight(),
+        scale = window.devicePixelRatio;
         html2canvas($('#renderPages'),{
+            scale: scale,
+            width: width,
+            height: height,
           onrendered:function(canvas){
             var contentWidth = canvas.width;
             var contentHeight = canvas.height;
@@ -298,7 +297,7 @@ function renderStandard(){
             var position = 0;
             var imgWidth = 960
             var imgHeight = 960 / contentWidth * contentHeight;
-            var pageData = canvas.toDataURL('image/png', 1.0);
+            var pageData = canvas.toDataURL('image/jpeg', 1.0);
             var pdf = new jsPDF({
                 orientation: 'landscape',
                 unit: 'pt',
@@ -317,43 +316,12 @@ function renderStandard(){
                   }
               }
               pdf.save('视觉规范'+Date.now()+'.pdf');
-              _self.loadingbtn('success');
-              setTimeout(function (){_self.loadingbtn('reset')},2000);
           },
             background:"#ffffff"
         });
      $('#renderPages').empty();
   });
-
 }
-
-
-
-//base64 transform to blob object
-function base64Img2Blob(code) {
-    var parts = code.split(';base64,');
-    var contentType = parts[0].split(':')[1];
-    var raw = window.atob(parts[1]);
-    var rawLength = raw.length;
-    var uInt8Array = new Uint8Array(rawLength);
-    for (var i = 0; i < rawLength; ++i) {
-        uInt8Array[i] = raw.charCodeAt(i);
-    }
-    return new Blob([uInt8Array], { type: contentType });
-}
-
-//download File
-function downloadFile(content,fileName) {
-    var aLink = document.createElement('a');
-    var blob = base64Img2Blob(content); //new Blob([content]);
-    aLink.download = fileName;
-    aLink.href = URL.createObjectURL(blob);
-
-    var event = document.createEvent('MouseEvents');
-    event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    aLink.dispatchEvent(event);
-}
-
 
 function decideFontColor(color){
     var sColor = color.toLowerCase();
